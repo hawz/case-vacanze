@@ -5,16 +5,23 @@ export default defineNuxtConfig({
 
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n', '@nuxt/eslint', '@pinia/nuxt', '@nuxtjs/supabase'],
 
+  // IMPORTANTE: qui dentro i valori restano SEMPRE stringhe vuote/placeholder.
+  // Non leggere mai process.env.* direttamente in questo file per valori
+  // segreti: nuxt.config.ts viene valutato in fase di build, quindi il
+  // valore verrebbe scritto in chiaro nel bundle compilato (è esattamente
+  // l'errore che ha fatto fallire la build su Netlify). I valori reali
+  // arrivano solo a runtime tramite variabili d'ambiente con prefisso
+  // NUXT_ (es. NUXT_CLOUDINARY_API_SECRET), che Nitro applica da solo.
   runtimeConfig: {
-    // Solo lato server, per operazioni con privilegi elevati (es. azioni admin):
-    // mai esposta al client. Chiave "secret" del nuovo schema Supabase (sb_secret_...).
-    supabaseSecretKey: process.env.SUPABASE_SECRET_KEY,
+    // Solo lato server, per operazioni con privilegi elevati (es. azioni admin).
+    // Chiave "secret" del nuovo schema Supabase (sb_secret_...).
+    supabaseSecretKey: '',
     // Cloudinary: l'upload delle foto passa sempre da un endpoint server
     // (vedi server/api/), quindi anche cloudName/apiKey restano lato server.
     cloudinary: {
-      cloudName: process.env.CLOUDINARY_CLOUD_NAME,
-      apiKey: process.env.CLOUDINARY_API_KEY,
-      apiSecret: process.env.CLOUDINARY_API_SECRET,
+      cloudName: '',
+      apiKey: '',
+      apiSecret: '',
     },
   },
 
