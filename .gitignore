@@ -1,0 +1,21 @@
+# Nuxt
+.nuxt
+.output
+.data
+dist
+
+# Node
+node_modules
+package-lock.json.bak
+
+# Env
+.env
+.env.*
+!.env.example
+
+# Prisma
+prisma/*.db
+
+# Editor/OS
+.DS_Store
+*.log

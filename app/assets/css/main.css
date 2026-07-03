@@ -1,0 +1,27 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/*
+  Variabili CSS del tema di default.
+  Ogni mini-sito (proprietà) potrà sovrascrivere queste variabili
+  applicando un data-attribute o una classe tema sul root, vedi
+  config/themes.ts per la definizione dei temi disponibili.
+*/
+:root {
+  --color-primary: #0f766e;
+  --color-primary-dark: #115e59;
+  --color-accent: #f59e0b;
+  --color-surface: #ffffff;
+  --color-background: #f9fafb;
+  --color-text: #111827;
+  --color-muted: #6b7280;
+
+  --font-family-base: system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+html {
+  background-color: var(--color-background);
+  color: var(--color-text);
+  font-family: var(--font-family-base);
+}
