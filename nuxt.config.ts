@@ -34,11 +34,10 @@ export default defineNuxtConfig({
     redirectOptions: {
       login: '/app/login',
       callback: '/app/confirm',
-      // '/test-upload' è una pagina temporanea di verifica dell'upload Cloudinary:
-      // va rimossa dall'exclude (e cancellata) quando l'EPIC 4 (foto) la sostituirà
-      // con il flusso reale. '/test-connection' (verifica connessione Supabase) è
-      // stata rimossa insieme alla pagina, non più necessaria.
-      exclude: ['/', '/en', '/owners', '/en/owners', '/property/**', '/en/property/**', '/test-upload', '/en/test-upload'],
+      // '/test-connection' e '/test-upload' (verifica Supabase/Cloudinary) sono
+      // state rimosse insieme alle pagine: EPIC 4 ha sostituito il flusso di
+      // test con quello reale (server/api/properties/[id]/photos.post.ts).
+      exclude: ['/', '/en', '/owners', '/en/owners', '/property/**', '/en/property/**'],
       // Salva in un cookie la pagina che l'utente stava cercando di raggiungere
       // quando è stato rimbalzato al login, così login.vue può riportarcelo
       // dopo l'accesso invece di mandarlo sempre alla dashboard di default.
