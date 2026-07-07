@@ -19,7 +19,7 @@ export type WizardStep = typeof WIZARD_STEPS[number]
 // Step già costruiti e navigabili (WizardSteps.vue li rende cliccabili,
 // gli altri appaiono come "Prossimamente"). Aggiornare qui man mano che
 // le EPIC 4-11 vengono implementate, invece di toccare il componente.
-export const IMPLEMENTED_STEPS: WizardStep[] = ['general-info']
+export const IMPLEMENTED_STEPS: WizardStep[] = ['general-info', 'photos']
 
 export const useWizardStore = defineStore('wizard', () => {
   const propertyId = ref<string | null>(null)
