@@ -162,6 +162,52 @@
       },
       "submit": "Save",
       "saved": "Information saved successfully."
+    },
+    "photos": {
+      "title": "Photos",
+      "subtitle": "Upload photos of your property: you'll be able to categorize them, reorder them and choose a cover.",
+      "dropzone": {
+        "text": "Drag photos here or",
+        "browseButton": "Choose files",
+        "hint": "Supported formats: JPEG, PNG, WEBP. Maximum size 8 MB per file."
+      },
+      "queue": {
+        "uploading": "Uploading...",
+        "dismiss": "Dismiss"
+      },
+      "empty": "You haven't uploaded any photos yet.",
+      "categories": {
+        "EXTERIOR": "Exterior",
+        "BEDROOM": "Bedroom",
+        "BATHROOM": "Bathroom",
+        "KITCHEN": "Kitchen",
+        "VIEW": "View",
+        "OTHER": "Other"
+      },
+      "fields": {
+        "categoryLabel": "Category",
+        "altTextLabel": "Alt text"
+      },
+      "setCover": "Set as cover",
+      "coverBadge": "Cover",
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "saveDetails": "Save",
+      "detailsSaved": "Saved.",
+      "delete": "Delete",
+      "deleteConfirm": {
+        "title": "Delete this photo?",
+        "confirm": "Delete permanently",
+        "cancel": "Cancel"
+      },
+      "errors": {
+        "load": "We couldn't load the photos.",
+        "formatInvalid": "Unsupported format. Use JPEG, PNG or WEBP.",
+        "tooLarge": "File too large (maximum 8 MB).",
+        "uploadFailed": "Upload failed. Please try again.",
+        "saveDetails": "We couldn't save the changes. Please try again.",
+        "delete": "We couldn't delete the photo. Please try again."
+      }
     }
   },
   "profile": {

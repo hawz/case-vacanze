@@ -162,6 +162,52 @@
       },
       "submit": "Salva",
       "saved": "Informazioni salvate con successo."
+    },
+    "photos": {
+      "title": "Foto",
+      "subtitle": "Carica le foto della tua proprietà: potrai categorizzarle, riordinarle e scegliere la copertina.",
+      "dropzone": {
+        "text": "Trascina qui le foto oppure",
+        "browseButton": "Scegli i file",
+        "hint": "Formati supportati: JPEG, PNG, WEBP. Dimensione massima 8 MB per file."
+      },
+      "queue": {
+        "uploading": "Caricamento in corso...",
+        "dismiss": "Ignora"
+      },
+      "empty": "Non hai ancora caricato nessuna foto.",
+      "categories": {
+        "EXTERIOR": "Esterno",
+        "BEDROOM": "Camera",
+        "BATHROOM": "Bagno",
+        "KITCHEN": "Cucina",
+        "VIEW": "Vista",
+        "OTHER": "Altro"
+      },
+      "fields": {
+        "categoryLabel": "Categoria",
+        "altTextLabel": "Testo alternativo"
+      },
+      "setCover": "Imposta come copertina",
+      "coverBadge": "Copertina",
+      "moveUp": "Sposta su",
+      "moveDown": "Sposta giù",
+      "saveDetails": "Salva",
+      "detailsSaved": "Salvato.",
+      "delete": "Elimina",
+      "deleteConfirm": {
+        "title": "Eliminare questa foto?",
+        "confirm": "Elimina definitivamente",
+        "cancel": "Annulla"
+      },
+      "errors": {
+        "load": "Non è stato possibile caricare le foto.",
+        "formatInvalid": "Formato non supportato. Usa JPEG, PNG o WEBP.",
+        "tooLarge": "File troppo grande (massimo 8 MB).",
+        "uploadFailed": "Caricamento non riuscito. Riprova.",
+        "saveDetails": "Non è stato possibile salvare le modifiche. Riprova.",
+        "delete": "Non è stato possibile eliminare la foto. Riprova."
+      }
     }
   },
   "profile": {
