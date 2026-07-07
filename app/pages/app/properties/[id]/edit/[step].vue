@@ -39,6 +39,11 @@ const currentStep = stepParam as WizardStep
       :property-id="propertyId"
     />
 
+    <WizardPhotosStep
+      v-else-if="currentStep === 'photos'"
+      :property-id="propertyId"
+    />
+
     <div
       v-else
       class="wizard-page__soon"
