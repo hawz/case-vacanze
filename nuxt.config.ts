@@ -1,9 +1,10 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
   compatibilityDate: '2026-07-01',
-  devtools: { enabled: true },
 
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n', '@nuxt/eslint', '@pinia/nuxt', '@nuxtjs/supabase'],
+
+  devtools: { enabled: true },
 
   // IMPORTANTE: qui dentro i valori restano SEMPRE stringhe vuote/placeholder.
   // Non leggere mai process.env.* direttamente in questo file per valori
