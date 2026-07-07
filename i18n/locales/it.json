@@ -2,5 +2,122 @@
   "home": {
     "title": "Gestisci le tue case vacanza in un unico posto",
     "subtitle": "Inserisci le proprietà, carica le foto e collegale ad AirBnB, Booking e agli altri portali."
+  },
+  "auth": {
+    "fields": {
+      "emailLabel": "Email",
+      "passwordLabel": "Password",
+      "confirmPasswordLabel": "Conferma password",
+      "newPasswordLabel": "Nuova password"
+    },
+    "common": {
+      "loading": "Attendere..."
+    },
+    "validation": {
+      "emailInvalid": "Inserisci un indirizzo email valido.",
+      "passwordMin": "La password deve avere almeno 6 caratteri.",
+      "passwordsMismatch": "Le password non coincidono."
+    },
+    "errors": {
+      "invalidCredentials": "Email o password non corrette.",
+      "emailNotConfirmed": "Devi confermare la tua email prima di accedere. Controlla la posta.",
+      "userAlreadyRegistered": "Esiste già un account con questa email."
+    },
+    "login": {
+      "title": "Accedi",
+      "subtitle": "Entra nel backoffice per gestire le tue proprietà.",
+      "submit": "Accedi",
+      "forgotPasswordLink": "Password dimenticata?",
+      "noAccount": "Non hai un account?",
+      "registerLink": "Registrati"
+    },
+    "register": {
+      "title": "Crea il tuo account",
+      "subtitle": "Registrati per iniziare a gestire le tue case vacanza.",
+      "submit": "Registrati",
+      "hasAccount": "Hai già un account?",
+      "loginLink": "Accedi",
+      "successTitle": "Controlla la tua email",
+      "successMessage": "Ti abbiamo inviato un link di conferma a {email}. Clicca sul link per attivare l'account."
+    },
+    "forgotPassword": {
+      "title": "Password dimenticata",
+      "subtitle": "Inserisci la tua email: ti invieremo un link per reimpostare la password.",
+      "submit": "Invia link di reset",
+      "successTitle": "Controlla la tua email",
+      "successMessage": "Se esiste un account associato a {email}, riceverai un link per reimpostare la password.",
+      "backToLogin": "Torna al login"
+    },
+    "confirm": {
+      "verifyingTitle": "Verifica in corso",
+      "verifyingSubtitle": "Un attimo, stiamo confermando il link...",
+      "successTitle": "Email confermata",
+      "successMessage": "Account attivato. Ti stiamo reindirizzando...",
+      "errorTitle": "Link non valido",
+      "errorMessage": "Il link è scaduto o non è più valido. Prova a effettuare di nuovo l'accesso o la richiesta.",
+      "backToLogin": "Torna al login",
+      "resetTitle": "Imposta una nuova password",
+      "resetSubtitle": "Scegli la nuova password per il tuo account.",
+      "resetSubmit": "Salva nuova password",
+      "resetSuccessTitle": "Password aggiornata",
+      "resetSuccessMessage": "La tua password è stata aggiornata con successo.",
+      "continueLink": "Vai al backoffice"
+    }
+  },
+  "nav": {
+    "profile": "Profilo",
+    "logout": "Esci"
+  },
+  "properties": {
+    "title": "Le tue proprietà",
+    "createButton": "Nuova proprietà",
+    "loadError": "Non è stato possibile caricare le proprietà.",
+    "empty": {
+      "title": "Nessuna proprietà",
+      "message": "Non hai ancora creato nessuna casa vacanza. Crea la prima per iniziare."
+    },
+    "create": {
+      "nameLabel": "Nome della proprietà",
+      "nameRequired": "Inserisci un nome per la proprietà.",
+      "submit": "Crea",
+      "cancel": "Annulla",
+      "errorGeneric": "Non è stato possibile creare la proprietà. Riprova."
+    },
+    "status": {
+      "draft": "Bozza",
+      "published": "Pubblicata",
+      "suspended": "Sospesa"
+    },
+    "actions": {
+      "edit": "Apri",
+      "delete": "Elimina"
+    },
+    "deleteConfirm": {
+      "title": "Eliminare questa proprietà?",
+      "message": "Verranno eliminati definitivamente anche foto, optional, regole della casa, guida alla zona, annunci e richieste di disponibilità collegate a questa proprietà.",
+      "confirm": "Elimina definitivamente",
+      "cancel": "Annulla",
+      "errorGeneric": "Non è stato possibile eliminare la proprietà. Riprova."
+    },
+    "editStub": {
+      "message": "Il wizard di configurazione della proprietà arriverà a breve.",
+      "notFoundTitle": "Proprietà non trovata",
+      "backLink": "Torna all'elenco"
+    }
+  },
+  "profile": {
+    "title": "Il tuo profilo",
+    "subtitle": "Aggiorna i tuoi dati di contatto.",
+    "fields": {
+      "firstNameLabel": "Nome",
+      "lastNameLabel": "Cognome",
+      "phoneLabel": "Telefono"
+    },
+    "validation": {
+      "tooLong": "Massimo 100 caratteri.",
+      "phoneInvalid": "Inserisci un numero di telefono valido."
+    },
+    "submit": "Salva",
+    "saved": "Profilo aggiornato con successo."
   }
 }
