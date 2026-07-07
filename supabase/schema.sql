@@ -46,11 +46,14 @@ create table public.properties (
   short_description text,
   long_description text,
   status property_status not null default 'DRAFT',
+  suspension_reason text,
   theme_id text not null default 'default',
   check_in_time text,
   check_out_time text,
   created_at timestamptz not null default now(),
-  updated_at timestamptz not null default now()
+  updated_at timestamptz not null default now(),
+  constraint suspension_reason_required_when_suspended
+    check (status <> 'SUSPENDED' or suspension_reason is not null)
 );
 
 create table public.photos (
@@ -218,6 +221,10 @@ create policy "profiles_select_own_or_admin" on public.profiles
   for select using (id = auth.uid() or public.is_admin());
 create policy "profiles_update_own" on public.profiles
   for update using (id = auth.uid());
+-- Solo un admin può promuovere/retrocedere il ruolo di un altro utente
+-- (es. da Owner ad Admin), tramite la futura UI di amministrazione (US-1702).
+create policy "profiles_admin_update_any" on public.profiles
+  for update using (public.is_admin());
 
 -- properties: owner gestisce le proprie, admin gestisce tutte,
 -- chiunque (anche anonimo) può leggere le proprietà pubblicate (mini-sito)
