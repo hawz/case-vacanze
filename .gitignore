@@ -19,3 +19,6 @@ prisma/*.db
 # Editor/OS
 .DS_Store
 *.log
+
+# Documento Backlog
+backlog.md
