@@ -60,6 +60,13 @@ create table public.photos (
   id uuid primary key default gen_random_uuid(),
   property_id uuid not null references public.properties (id) on delete cascade,
   url text not null,
+  -- public_id Cloudinary (nullable): serve solo per poter cancellare l'asset
+  -- reale su Cloudinary quando la foto viene eliminata (US-404), evitando
+  -- risorse orfane. Aggiunta il 2026-07-07 su una tabella già esistente:
+  -- se il tuo progetto Supabase ha già "photos", esegui separatamente
+  -- `alter table public.photos add column public_id text;` nello SQL Editor,
+  -- perché questo file CREATE TABLE non viene ri-eseguito su un DB esistente.
+  public_id text,
   alt_text text,
   category photo_category not null default 'OTHER',
   sort_order int not null default 0,
