@@ -105,6 +105,65 @@
       "backLink": "Torna all'elenco"
     }
   },
+  "wizard": {
+    "nav": {
+      "label": "Passaggi configurazione proprietà",
+      "comingSoon": "Presto",
+      "comingSoonMessage": "Questa sezione sarà disponibile a breve."
+    },
+    "steps": {
+      "general-info": "Informazioni generali",
+      "photos": "Foto",
+      "occupancy-spaces": "Occupazione e spazi",
+      "optionals": "Optional",
+      "house-rules": "Regole della casa",
+      "area-guide": "Guida alla zona",
+      "ota-links": "Portali esterni",
+      "theme": "Tema",
+      "publish": "Pubblicazione"
+    },
+    "generalInfo": {
+      "title": "Informazioni generali",
+      "subtitle": "Nome, indirizzo e descrizione della tua casa vacanza.",
+      "fields": {
+        "nameLabel": "Nome della proprietà",
+        "slugLabel": "Slug (indirizzo del mini-sito)",
+        "slugHint": "Usato nell'indirizzo web pubblico della proprietà, es. \"villa-sul-mare\".",
+        "propertyTypeLabel": "Tipo di proprietà",
+        "propertyTypeOtherPlaceholder": "Specifica il tipo di proprietà",
+        "addressLabel": "Indirizzo",
+        "cityLabel": "Città",
+        "provinceLabel": "Provincia",
+        "latitudeLabel": "Latitudine",
+        "longitudeLabel": "Longitudine",
+        "shortDescriptionLabel": "Descrizione breve",
+        "longDescriptionLabel": "Descrizione estesa",
+        "checkInLabel": "Orario check-in",
+        "checkInPlaceholder": "es. dalle 15:00",
+        "checkOutLabel": "Orario check-out",
+        "checkOutPlaceholder": "es. entro le 10:00"
+      },
+      "propertyTypePlaceholder": "Seleziona un tipo",
+      "propertyTypeOptions": {
+        "apartment": "Appartamento",
+        "villa": "Villa",
+        "house": "Casa indipendente",
+        "trullo": "Trullo",
+        "other": "Altro"
+      },
+      "validation": {
+        "nameRequired": "Inserisci un nome per la proprietà.",
+        "slugInvalid": "Lo slug può contenere solo lettere minuscole, numeri e trattini.",
+        "latitudeInvalid": "La latitudine deve essere un numero tra -90 e 90.",
+        "longitudeInvalid": "La longitudine deve essere un numero tra -180 e 180."
+      },
+      "errors": {
+        "slugTaken": "Questo slug è già in uso da un'altra proprietà. Scegline un altro."
+      },
+      "submit": "Salva",
+      "saved": "Informazioni salvate con successo."
+    }
+  },
   "profile": {
     "title": "Il tuo profilo",
     "subtitle": "Aggiorna i tuoi dati di contatto.",

@@ -105,6 +105,65 @@
       "backLink": "Back to the list"
     }
   },
+  "wizard": {
+    "nav": {
+      "label": "Property setup steps",
+      "comingSoon": "Coming soon",
+      "comingSoonMessage": "This section will be available soon."
+    },
+    "steps": {
+      "general-info": "General info",
+      "photos": "Photos",
+      "occupancy-spaces": "Occupancy & spaces",
+      "optionals": "Optionals",
+      "house-rules": "House rules",
+      "area-guide": "Area guide",
+      "ota-links": "External platforms",
+      "theme": "Theme",
+      "publish": "Publish"
+    },
+    "generalInfo": {
+      "title": "General info",
+      "subtitle": "Name, address and description of your vacation home.",
+      "fields": {
+        "nameLabel": "Property name",
+        "slugLabel": "Slug (mini-site address)",
+        "slugHint": "Used in the property's public web address, e.g. \"sea-view-villa\".",
+        "propertyTypeLabel": "Property type",
+        "propertyTypeOtherPlaceholder": "Specify the property type",
+        "addressLabel": "Address",
+        "cityLabel": "City",
+        "provinceLabel": "Province",
+        "latitudeLabel": "Latitude",
+        "longitudeLabel": "Longitude",
+        "shortDescriptionLabel": "Short description",
+        "longDescriptionLabel": "Long description",
+        "checkInLabel": "Check-in time",
+        "checkInPlaceholder": "e.g. from 3:00 PM",
+        "checkOutLabel": "Check-out time",
+        "checkOutPlaceholder": "e.g. by 10:00 AM"
+      },
+      "propertyTypePlaceholder": "Select a type",
+      "propertyTypeOptions": {
+        "apartment": "Apartment",
+        "villa": "Villa",
+        "house": "Detached house",
+        "trullo": "Trullo",
+        "other": "Other"
+      },
+      "validation": {
+        "nameRequired": "Enter a name for the property.",
+        "slugInvalid": "The slug can only contain lowercase letters, numbers and hyphens.",
+        "latitudeInvalid": "Latitude must be a number between -90 and 90.",
+        "longitudeInvalid": "Longitude must be a number between -180 and 180."
+      },
+      "errors": {
+        "slugTaken": "This slug is already used by another property. Choose a different one."
+      },
+      "submit": "Save",
+      "saved": "Information saved successfully."
+    }
+  },
   "profile": {
     "title": "Your profile",
     "subtitle": "Update your contact details.",
