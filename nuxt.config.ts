@@ -37,6 +37,10 @@ export default defineNuxtConfig({
       // '/test-connection' e '/test-upload' sono pagine temporanee di verifica:
       // vanno rimosse dall'exclude (e cancellate) una volta completata la struttura reale.
       exclude: ['/', '/en', '/owners', '/en/owners', '/property/**', '/en/property/**', '/test-connection', '/en/test-connection', '/test-upload', '/en/test-upload'],
+      // Salva in un cookie la pagina che l'utente stava cercando di raggiungere
+      // quando è stato rimbalzato al login, così login.vue può riportarcelo
+      // dopo l'accesso invece di mandarlo sempre alla dashboard di default.
+      saveRedirectToCookie: true,
     },
   },
 
