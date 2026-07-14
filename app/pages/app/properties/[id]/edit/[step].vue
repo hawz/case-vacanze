@@ -74,6 +74,11 @@ const currentStep = stepParam as WizardStep
       :property-id="propertyId"
     />
 
+    <WizardPublishStep
+      v-else-if="currentStep === 'publish'"
+      :property-id="propertyId"
+    />
+
     <div
       v-else
       class="wizard-page__soon"
