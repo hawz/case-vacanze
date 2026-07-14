@@ -64,6 +64,11 @@ const currentStep = stepParam as WizardStep
       :property-id="propertyId"
     />
 
+    <WizardOtaLinksStep
+      v-else-if="currentStep === 'ota-links'"
+      :property-id="propertyId"
+    />
+
     <div
       v-else
       class="wizard-page__soon"
