@@ -90,6 +90,7 @@
     },
     "actions": {
       "edit": "Apri",
+      "calendar": "Calendario",
       "delete": "Elimina"
     },
     "deleteConfirm": {
@@ -103,6 +104,45 @@
       "message": "Il wizard di configurazione della proprietà arriverà a breve.",
       "notFoundTitle": "Proprietà non trovata",
       "backLink": "Torna all'elenco"
+    }
+  },
+  "calendar": {
+    "title": "Calendario disponibilità",
+    "subtitle": "Blocca i periodi in cui la casa non è disponibile.",
+    "backLink": "Torna all'elenco",
+    "loading": "Caricamento...",
+    "prevMonth": "Mese precedente",
+    "nextMonth": "Mese successivo",
+    "add": {
+      "title": "Blocca un periodo",
+      "startDateLabel": "Dal",
+      "endDateLabel": "Al",
+      "reasonLabel": "Motivo (facoltativo)",
+      "reasonPlaceholder": "es. Prenotato su Airbnb, Manutenzione",
+      "button": "Blocca"
+    },
+    "overlapWarning": "Questo periodo si sovrappone a un blocco già esistente.",
+    "list": {
+      "title": "Periodi bloccati",
+      "empty": "Non hai ancora bloccato nessun periodo."
+    },
+    "save": "Salva",
+    "saved": "Salvato.",
+    "delete": "Elimina",
+    "deleteConfirm": {
+      "title": "Eliminare questo blocco?",
+      "confirm": "Elimina definitivamente",
+      "cancel": "Annulla"
+    },
+    "validation": {
+      "datesRequired": "Inserisci entrambe le date.",
+      "endBeforeStart": "La data di fine deve essere uguale o successiva alla data di inizio."
+    },
+    "errors": {
+      "load": "Non è stato possibile caricare il calendario.",
+      "add": "Non è stato possibile bloccare il periodo. Riprova.",
+      "save": "Non è stato possibile salvare le modifiche. Riprova.",
+      "delete": "Non è stato possibile eliminare il blocco. Riprova."
     }
   },
   "wizard": {

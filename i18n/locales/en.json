@@ -90,6 +90,7 @@
     },
     "actions": {
       "edit": "Open",
+      "calendar": "Calendar",
       "delete": "Delete"
     },
     "deleteConfirm": {
@@ -103,6 +104,45 @@
       "message": "The property setup wizard is coming soon.",
       "notFoundTitle": "Property not found",
       "backLink": "Back to the list"
+    }
+  },
+  "calendar": {
+    "title": "Availability calendar",
+    "subtitle": "Block the periods when the property is not available.",
+    "backLink": "Back to the list",
+    "loading": "Loading...",
+    "prevMonth": "Previous month",
+    "nextMonth": "Next month",
+    "add": {
+      "title": "Block a period",
+      "startDateLabel": "From",
+      "endDateLabel": "To",
+      "reasonLabel": "Reason (optional)",
+      "reasonPlaceholder": "e.g. Booked on Airbnb, Maintenance",
+      "button": "Block"
+    },
+    "overlapWarning": "This period overlaps with an existing block.",
+    "list": {
+      "title": "Blocked periods",
+      "empty": "You haven't blocked any period yet."
+    },
+    "save": "Save",
+    "saved": "Saved.",
+    "delete": "Delete",
+    "deleteConfirm": {
+      "title": "Delete this block?",
+      "confirm": "Delete permanently",
+      "cancel": "Cancel"
+    },
+    "validation": {
+      "datesRequired": "Enter both dates.",
+      "endBeforeStart": "The end date must be on or after the start date."
+    },
+    "errors": {
+      "load": "We couldn't load the calendar.",
+      "add": "We couldn't block the period. Please try again.",
+      "save": "We couldn't save the changes. Please try again.",
+      "delete": "We couldn't delete the block. Please try again."
     }
   },
   "wizard": {
