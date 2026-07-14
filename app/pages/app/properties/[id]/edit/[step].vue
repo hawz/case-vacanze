@@ -69,6 +69,11 @@ const currentStep = stepParam as WizardStep
       :property-id="propertyId"
     />
 
+    <WizardThemeStep
+      v-else-if="currentStep === 'theme'"
+      :property-id="propertyId"
+    />
+
     <div
       v-else
       class="wizard-page__soon"
