@@ -1,10 +1,21 @@
 // https://nuxt.com/docs/api/configuration/nuxt-config
 export default defineNuxtConfig({
-  compatibilityDate: '2026-07-01',
 
   modules: ['@nuxtjs/tailwindcss', '@nuxtjs/i18n', '@nuxt/eslint', '@pinia/nuxt', '@nuxtjs/supabase'],
 
   devtools: { enabled: true },
+
+  app: {
+    head: {
+      htmlAttrs: { lang: 'it' },
+      title: 'Portale Case Vacanze',
+      meta: [
+        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
+      ],
+    },
+  },
+
+  css: ['~/assets/css/main.css'],
 
   // IMPORTANTE: qui dentro i valori restano SEMPRE stringhe vuote/placeholder.
   // Non leggere mai process.env.* direttamente in questo file per valori
@@ -25,28 +36,17 @@ export default defineNuxtConfig({
       apiSecret: '',
     },
   },
+  compatibilityDate: '2026-07-01',
 
-  // @nuxtjs/supabase: gestisce client, sessione SSR e redirect di autenticazione.
-  // url/key letti di default da SUPABASE_URL/SUPABASE_KEY (già compatibili con le
-  // nuove publishable/secret key di Supabase, non solo con le vecchie JWT).
-  // Le route pubbliche (mini-sito, landing) sono escluse dal redirect automatico
-  // verso il login, che scatta solo per l'area /app (backoffice).
-  supabase: {
-    redirectOptions: {
-      login: '/app/login',
-      callback: '/app/confirm',
-      // '/test-connection' e '/test-upload' (verifica Supabase/Cloudinary) sono
-      // state rimosse insieme alle pagine: EPIC 4 ha sostituito il flusso di
-      // test con quello reale (server/api/properties/[id]/photos.post.ts).
-      exclude: ['/', '/en', '/owners', '/en/owners', '/property/**', '/en/property/**'],
-      // Salva in un cookie la pagina che l'utente stava cercando di raggiungere
-      // quando è stato rimbalzato al login, così login.vue può riportarcelo
-      // dopo l'accesso invece di mandarlo sempre alla dashboard di default.
-      saveRedirectToCookie: true,
-    },
+  typescript: {
+    strict: true,
   },
 
-  css: ['~/assets/css/main.css'],
+  eslint: {
+    config: {
+      stylistic: true,
+    },
+  },
 
   // Design mobile-first: nessun breakpoint extra richiesto qui,
   // Tailwind è già mobile-first di default (min-width breakpoints).
@@ -68,23 +68,23 @@ export default defineNuxtConfig({
     detectBrowserLanguage: false,
   },
 
-  app: {
-    head: {
-      htmlAttrs: { lang: 'it' },
-      title: 'Portale Case Vacanze',
-      meta: [
-        { name: 'viewport', content: 'width=device-width, initial-scale=1' },
-      ],
+  // @nuxtjs/supabase: gestisce client, sessione SSR e redirect di autenticazione.
+  // url/key letti di default da SUPABASE_URL/SUPABASE_KEY (già compatibili con le
+  // nuove publishable/secret key di Supabase, non solo con le vecchie JWT).
+  // Le route pubbliche (mini-sito, landing) sono escluse dal redirect automatico
+  // verso il login, che scatta solo per l'area /app (backoffice).
+  supabase: {
+    redirectOptions: {
+      login: '/app/login',
+      callback: '/app/confirm',
+      // '/test-connection' e '/test-upload' (verifica Supabase/Cloudinary) sono
+      // state rimosse insieme alle pagine: EPIC 4 ha sostituito il flusso di
+      // test con quello reale (server/api/properties/[id]/photos.post.ts).
+      exclude: ['/', '/en', '/owners', '/en/owners', '/property/**', '/en/property/**'],
+      // Salva in un cookie la pagina che l'utente stava cercando di raggiungere
+      // quando è stato rimbalzato al login, così login.vue può riportarcelo
+      // dopo l'accesso invece di mandarlo sempre alla dashboard di default.
+      saveRedirectToCookie: true,
     },
-  },
-
-  eslint: {
-    config: {
-      stylistic: true,
-    },
-  },
-
-  typescript: {
-    strict: true,
   },
 })

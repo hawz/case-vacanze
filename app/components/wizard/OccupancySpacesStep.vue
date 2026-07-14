@@ -155,7 +155,8 @@ async function onSubmit() {
       <label
         class="wizard-form__label"
         for="os-max-guests"
-      >{{ t('wizard.occupancySpaces.fields.maxGuestsLabel') }}</label>
+      >{{ t('wizard.occupancySpaces.fields.maxGuestsLabel')
+      }}</label>
       <input
         id="os-max-guests"
         v-model="maxGuests"
@@ -178,7 +179,8 @@ async function onSubmit() {
         <label
           class="wizard-form__label"
           for="os-bedrooms"
-        >{{ t('wizard.occupancySpaces.fields.bedroomsLabel') }}</label>
+        >{{ t('wizard.occupancySpaces.fields.bedroomsLabel')
+        }}</label>
         <input
           id="os-bedrooms"
           v-model="bedrooms"
@@ -199,7 +201,8 @@ async function onSubmit() {
         <label
           class="wizard-form__label"
           for="os-bathrooms"
-        >{{ t('wizard.occupancySpaces.fields.bathroomsLabel') }}</label>
+        >{{ t('wizard.occupancySpaces.fields.bathroomsLabel')
+        }}</label>
         <input
           id="os-bathrooms"
           v-model="bathrooms"
@@ -244,7 +247,8 @@ async function onSubmit() {
         <label
           class="wizard-form__label"
           for="os-single-beds"
-        >{{ t('wizard.occupancySpaces.fields.singleBedsLabel') }}</label>
+        >{{ t('wizard.occupancySpaces.fields.singleBedsLabel')
+        }}</label>
         <input
           id="os-single-beds"
           v-model="singleBeds"
@@ -265,7 +269,8 @@ async function onSubmit() {
         <label
           class="wizard-form__label"
           for="os-double-beds"
-        >{{ t('wizard.occupancySpaces.fields.doubleBedsLabel') }}</label>
+        >{{ t('wizard.occupancySpaces.fields.doubleBedsLabel')
+        }}</label>
         <input
           id="os-double-beds"
           v-model="doubleBeds"
@@ -326,7 +331,7 @@ async function onSubmit() {
 
 <style scoped>
 /*
-  Stesse classi condivise wizard-step__*/wizard-form__* di GeneralInfoStep.vue
+  Stesse classi condivise "wizard-step__" e "wizard-form__" di GeneralInfoStep.vue
   (i Vue scoped style non attraversano i file, vanno duplicate per componente).
 */
 .wizard-step__loading {
