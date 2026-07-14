@@ -54,6 +54,16 @@ const currentStep = stepParam as WizardStep
       :property-id="propertyId"
     />
 
+    <WizardHouseRulesStep
+      v-else-if="currentStep === 'house-rules'"
+      :property-id="propertyId"
+    />
+
+    <WizardAreaGuideStep
+      v-else-if="currentStep === 'area-guide'"
+      :property-id="propertyId"
+    />
+
     <div
       v-else
       class="wizard-page__soon"
