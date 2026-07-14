@@ -208,6 +208,28 @@
         "saveDetails": "We couldn't save the changes. Please try again.",
         "delete": "We couldn't delete the photo. Please try again."
       }
+    },
+    "occupancySpaces": {
+      "title": "Occupancy & spaces",
+      "subtitle": "Indicate how many guests the property can host and how the spaces are composed.",
+      "fields": {
+        "maxGuestsLabel": "Maximum guests",
+        "bedroomsLabel": "Bedrooms",
+        "bathroomsLabel": "Bathrooms",
+        "bedsLabel": "Total beds",
+        "singleBedsLabel": "Single beds",
+        "doubleBedsLabel": "Double beds"
+      },
+      "validation": {
+        "maxGuestsInvalid": "Enter a whole number greater than 0.",
+        "countInvalid": "Enter a whole number greater than or equal to 0."
+      },
+      "bedsMismatchWarning": "The sum of single and double beds doesn't match the total number of beds.",
+      "submit": "Save",
+      "saved": "Occupancy and spaces saved successfully.",
+      "errors": {
+        "load": "We couldn't load the occupancy data."
+      }
     }
   },
   "profile": {

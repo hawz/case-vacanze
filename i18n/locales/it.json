@@ -208,6 +208,28 @@
         "saveDetails": "Non è stato possibile salvare le modifiche. Riprova.",
         "delete": "Non è stato possibile eliminare la foto. Riprova."
       }
+    },
+    "occupancySpaces": {
+      "title": "Occupazione e spazi",
+      "subtitle": "Indica quanti ospiti può accogliere la proprietà e come sono composti gli spazi.",
+      "fields": {
+        "maxGuestsLabel": "Ospiti massimi",
+        "bedroomsLabel": "Camere da letto",
+        "bathroomsLabel": "Bagni",
+        "bedsLabel": "Letti totali",
+        "singleBedsLabel": "Letti singoli",
+        "doubleBedsLabel": "Letti matrimoniali"
+      },
+      "validation": {
+        "maxGuestsInvalid": "Inserisci un numero intero maggiore di 0.",
+        "countInvalid": "Inserisci un numero intero maggiore o uguale a 0."
+      },
+      "bedsMismatchWarning": "La somma di letti singoli e matrimoniali non coincide con il totale dei letti.",
+      "submit": "Salva",
+      "saved": "Occupazione e spazi salvati con successo.",
+      "errors": {
+        "load": "Non è stato possibile caricare i dati di occupazione."
+      }
     }
   },
   "profile": {

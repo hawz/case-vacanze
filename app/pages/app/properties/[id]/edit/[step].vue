@@ -44,6 +44,11 @@ const currentStep = stepParam as WizardStep
       :property-id="propertyId"
     />
 
+    <WizardOccupancySpacesStep
+      v-else-if="currentStep === 'occupancy-spaces'"
+      :property-id="propertyId"
+    />
+
     <div
       v-else
       class="wizard-page__soon"
