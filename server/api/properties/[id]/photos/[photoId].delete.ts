@@ -2,6 +2,12 @@
 // da una delete diretta via supabase-js lato client, come per le proprietà)
 // perché deve anche ripulire l'asset reale su Cloudinary, operazione che
 // richiede le credenziali server-only (vedi server/utils/cloudinary.ts).
+//
+// serverSupabaseUser/serverSupabaseClient vanno importati esplicitamente da
+// "#supabase/server": @nuxtjs/supabase non li auto-importa (vedi la stessa
+// nota in photos.post.ts).
+import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
+
 export default defineEventHandler(async (event) => {
   const user = await serverSupabaseUser(event)
   if (!user) {

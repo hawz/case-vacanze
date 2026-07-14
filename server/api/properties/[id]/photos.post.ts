@@ -3,6 +3,13 @@
 // lo carica su Cloudinary e salva la riga in public.photos. Le credenziali
 // Cloudinary restano solo qui lato server (vedi server/utils/cloudinary.ts);
 // il client non parla mai direttamente con Cloudinary.
+//
+// serverSupabaseUser/serverSupabaseClient NON sono auto-importati da
+// @nuxtjs/supabase (a differenza di getCloudinary(), che vive in
+// server/utils/ ed è auto-importato da Nitro): il modulo li espone solo
+// come alias "#supabase/server", da importare esplicitamente qui.
+import { serverSupabaseClient, serverSupabaseUser } from '#supabase/server'
+
 const ALLOWED_MIME_TYPES = ['image/jpeg', 'image/png', 'image/webp']
 const MAX_FILE_SIZE_BYTES = 8 * 1024 * 1024 // 8MB
 
