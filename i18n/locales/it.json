@@ -419,6 +419,18 @@
         "save": "Non è stato possibile salvare le modifiche. Riprova.",
         "delete": "Non è stato possibile eliminare il collegamento. Riprova."
       }
+    },
+    "theme": {
+      "title": "Tema del mini-sito",
+      "subtitle": "Scegli lo stile visivo del tuo mini-sito pubblico.",
+      "selectedBadge": "Selezionato",
+      "select": "Seleziona",
+      "save": "Salva",
+      "saved": "Tema salvato con successo.",
+      "errors": {
+        "load": "Non è stato possibile caricare il tema attuale.",
+        "save": "Non è stato possibile salvare il tema. Riprova."
+      }
     }
   },
   "profile": {

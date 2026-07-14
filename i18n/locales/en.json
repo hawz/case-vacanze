@@ -419,6 +419,18 @@
         "save": "We couldn't save the changes. Please try again.",
         "delete": "We couldn't delete the link. Please try again."
       }
+    },
+    "theme": {
+      "title": "Mini-site theme",
+      "subtitle": "Choose the visual style of your public mini-site.",
+      "selectedBadge": "Selected",
+      "select": "Select",
+      "save": "Save",
+      "saved": "Theme saved successfully.",
+      "errors": {
+        "load": "We couldn't load the current theme.",
+        "save": "We couldn't save the theme. Please try again."
+      }
     }
   },
   "profile": {
