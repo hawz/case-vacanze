@@ -8,20 +8,25 @@
     "generate": "nuxt generate",
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
-    "lint": "eslint ."
+    "lint:js": "eslint .",
+    "lint:css": "stylelint \"app/**/*.{vue,css}\"",
+    "lint": "npm run lint:js && npm run lint:css"
   },
   "dependencies": {
-    "nuxt": "^4.4.8",
-    "@pinia/nuxt": "^0.9.0",
-    "pinia": "^2.2.6",
     "@nuxtjs/supabase": "^1.4.0",
+    "@pinia/nuxt": "^0.9.0",
     "cloudinary": "^2.5.1",
+    "nuxt": "^4.4.8",
+    "pinia": "^2.2.6",
     "zod": "^3.23.8"
   },
   "devDependencies": {
-    "@nuxtjs/tailwindcss": "^6.12.0",
-    "@nuxtjs/i18n": "^10.4.0",
     "@nuxt/eslint": "^0.7.0",
-    "eslint": "^9.0.0"
+    "@nuxtjs/i18n": "^10.4.0",
+    "@nuxtjs/tailwindcss": "^6.12.0",
+    "eslint": "^9.0.0",
+    "postcss-html": "^1.8.1",
+    "stylelint": "^17.14.0",
+    "stylelint-config-recommended-vue": "^1.6.1"
   }
 }
