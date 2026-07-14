@@ -272,6 +272,12 @@ function statusModifier(status: string) {
           >
             {{ t('properties.actions.edit') }}
           </NuxtLink>
+          <NuxtLink
+            :to="localePath(`/app/properties/${property.id}/calendar`)"
+            class="property-card__link"
+          >
+            {{ t('properties.actions.calendar') }}
+          </NuxtLink>
           <button
             type="button"
             class="property-card__delete"
