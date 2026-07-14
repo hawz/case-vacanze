@@ -431,6 +431,41 @@
         "load": "We couldn't load the current theme.",
         "save": "We couldn't save the theme. Please try again."
       }
+    },
+    "publish": {
+      "title": "Publish",
+      "subtitle": "Check the minimum requirements and publish your property's mini-site.",
+      "requirements": {
+        "title": "Requirements for publishing",
+        "name": "Property name",
+        "slug": "Mini-site address (slug)",
+        "address": "Address",
+        "description": "A description (short or long)",
+        "maxGuests": "Maximum number of guests",
+        "photos": "At least one photo",
+        "goToStep": "Go to step"
+      },
+      "status": {
+        "label": "Current status",
+        "DRAFT": "Draft",
+        "PUBLISHED": "Published",
+        "SUSPENDED": "Suspended"
+      },
+      "missingRequirementsWarning": "Complete the missing requirements before you can publish.",
+      "publish": "Publish",
+      "publishedMessage": "Your property is published and visible to guests.",
+      "unpublish": "Revert to draft",
+      "unpublishedMessage": "The property is back to draft and no longer visible to guests.",
+      "suspended": {
+        "message": "This property has been suspended by an administrator and is not visible to guests.",
+        "reasonLabel": "Reason",
+        "note": "Only an administrator can reactivate it."
+      },
+      "errors": {
+        "load": "We couldn't load the property status.",
+        "publish": "We couldn't publish the property. Please try again.",
+        "unpublish": "We couldn't revert the property to draft. Please try again."
+      }
     }
   },
   "profile": {

@@ -431,6 +431,41 @@
         "load": "Non è stato possibile caricare il tema attuale.",
         "save": "Non è stato possibile salvare il tema. Riprova."
       }
+    },
+    "publish": {
+      "title": "Pubblicazione",
+      "subtitle": "Controlla i requisiti minimi e pubblica il mini-sito della tua proprietà.",
+      "requirements": {
+        "title": "Requisiti per la pubblicazione",
+        "name": "Nome della proprietà",
+        "slug": "Indirizzo del mini-sito (slug)",
+        "address": "Indirizzo",
+        "description": "Una descrizione (breve o estesa)",
+        "maxGuests": "Numero massimo di ospiti",
+        "photos": "Almeno una foto",
+        "goToStep": "Vai allo step"
+      },
+      "status": {
+        "label": "Stato attuale",
+        "DRAFT": "Bozza",
+        "PUBLISHED": "Pubblicata",
+        "SUSPENDED": "Sospesa"
+      },
+      "missingRequirementsWarning": "Completa i requisiti mancanti prima di poter pubblicare.",
+      "publish": "Pubblica",
+      "publishedMessage": "La tua proprietà è pubblicata ed è visibile agli ospiti.",
+      "unpublish": "Riporta a bozza",
+      "unpublishedMessage": "La proprietà è tornata in bozza e non è più visibile agli ospiti.",
+      "suspended": {
+        "message": "Questa proprietà è stata sospesa da un amministratore e non è visibile agli ospiti.",
+        "reasonLabel": "Motivo",
+        "note": "Solo un amministratore può riattivarla."
+      },
+      "errors": {
+        "load": "Non è stato possibile caricare lo stato della proprietà.",
+        "publish": "Non è stato possibile pubblicare la proprietà. Riprova.",
+        "unpublish": "Non è stato possibile riportare la proprietà a bozza. Riprova."
+      }
     }
   },
   "profile": {
