@@ -267,6 +267,116 @@
         "save": "We couldn't save the changes. Please try again.",
         "delete": "We couldn't delete the optional. Please try again."
       }
+    },
+    "houseRules": {
+      "title": "House rules",
+      "subtitle": "Let guests know about pets, smoking, parties and other rules of the property.",
+      "types": {
+        "PETS": "Pets",
+        "SMOKING": "Smoking",
+        "PARTIES": "Parties",
+        "OTHER": "Other"
+      },
+      "allowedLabel": "Allowed",
+      "notAllowedLabel": "Not allowed",
+      "noteLabel": "Note (optional)",
+      "notePlaceholder": "e.g. Small pets only",
+      "save": "Save",
+      "saved": "Saved.",
+      "validation": {
+        "choiceRequired": "Choose \"Allowed\" or \"Not allowed\"."
+      },
+      "errors": {
+        "load": "We couldn't load the house rules.",
+        "save": "We couldn't save. Please try again."
+      },
+      "other": {
+        "title": "Other rules",
+        "empty": "You haven't added any other rules yet.",
+        "add": {
+          "label": "New rule",
+          "placeholder": "e.g. Self check-in with lockbox",
+          "button": "Add"
+        },
+        "moveUp": "Move up",
+        "moveDown": "Move down",
+        "save": "Save",
+        "saved": "Saved.",
+        "delete": "Delete",
+        "deleteConfirm": {
+          "title": "Delete this rule?",
+          "confirm": "Delete permanently",
+          "cancel": "Cancel"
+        },
+        "validation": {
+          "descriptionRequired": "Enter the text of the rule."
+        },
+        "errors": {
+          "add": "We couldn't add the rule. Please try again.",
+          "save": "We couldn't save the changes. Please try again.",
+          "delete": "We couldn't delete the rule. Please try again."
+        }
+      }
+    },
+    "areaGuide": {
+      "title": "Area guide",
+      "subtitle": "Tell guests about the area and highlight nearby points of interest.",
+      "content": {
+        "label": "Guide text",
+        "placeholder": "Describe the area: what to see, how to get around, useful tips...",
+        "save": "Save",
+        "saved": "Saved.",
+        "errors": {
+          "load": "We couldn't load the area guide.",
+          "save": "We couldn't save the text. Please try again."
+        }
+      },
+      "pois": {
+        "title": "Points of interest",
+        "empty": "You haven't added any points of interest yet.",
+        "add": {
+          "nameLabel": "Name of the new point of interest",
+          "namePlaceholder": "e.g. Rabbit Beach",
+          "button": "Add"
+        },
+        "fields": {
+          "nameLabel": "Name",
+          "categoryLabel": "Category",
+          "distanceLabel": "Distance",
+          "distancePlaceholder": "e.g. 500 m, 10 min walk",
+          "descriptionLabel": "Description",
+          "externalUrlLabel": "External link",
+          "latitudeLabel": "Latitude",
+          "longitudeLabel": "Longitude"
+        },
+        "categories": {
+          "RESTAURANT": "Restaurant",
+          "BEACH": "Beach",
+          "ATTRACTION": "Attraction",
+          "SHOP": "Shop",
+          "TRANSPORT": "Transport",
+          "OTHER": "Other"
+        },
+        "save": "Save",
+        "saved": "Saved.",
+        "delete": "Delete",
+        "deleteConfirm": {
+          "title": "Delete this point of interest?",
+          "confirm": "Delete permanently",
+          "cancel": "Cancel"
+        },
+        "validation": {
+          "nameRequired": "Enter a name.",
+          "latitudeInvalid": "Latitude must be a number between -90 and 90.",
+          "longitudeInvalid": "Longitude must be a number between -180 and 180."
+        },
+        "errors": {
+          "load": "We couldn't load the points of interest.",
+          "add": "We couldn't add the point of interest. Please try again.",
+          "save": "We couldn't save the changes. Please try again.",
+          "delete": "We couldn't delete the point of interest. Please try again."
+        }
+      }
     }
   },
   "profile": {

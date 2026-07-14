@@ -267,6 +267,116 @@
         "save": "Non è stato possibile salvare le modifiche. Riprova.",
         "delete": "Non è stato possibile eliminare l'optional. Riprova."
       }
+    },
+    "houseRules": {
+      "title": "Regole della casa",
+      "subtitle": "Comunica agli ospiti animali, fumo, feste e altre regole della proprietà.",
+      "types": {
+        "PETS": "Animali",
+        "SMOKING": "Fumo",
+        "PARTIES": "Feste",
+        "OTHER": "Altro"
+      },
+      "allowedLabel": "Consentito",
+      "notAllowedLabel": "Non consentito",
+      "noteLabel": "Nota (facoltativa)",
+      "notePlaceholder": "es. Animali ammessi solo di piccola taglia",
+      "save": "Salva",
+      "saved": "Salvato.",
+      "validation": {
+        "choiceRequired": "Scegli \"Consentito\" o \"Non consentito\"."
+      },
+      "errors": {
+        "load": "Non è stato possibile caricare le regole della casa.",
+        "save": "Non è stato possibile salvare. Riprova."
+      },
+      "other": {
+        "title": "Altre regole",
+        "empty": "Non hai ancora aggiunto altre regole.",
+        "add": {
+          "label": "Nuova regola",
+          "placeholder": "es. Check-in autonomo con cassetta di sicurezza",
+          "button": "Aggiungi"
+        },
+        "moveUp": "Sposta su",
+        "moveDown": "Sposta giù",
+        "save": "Salva",
+        "saved": "Salvato.",
+        "delete": "Elimina",
+        "deleteConfirm": {
+          "title": "Eliminare questa regola?",
+          "confirm": "Elimina definitivamente",
+          "cancel": "Annulla"
+        },
+        "validation": {
+          "descriptionRequired": "Inserisci il testo della regola."
+        },
+        "errors": {
+          "add": "Non è stato possibile aggiungere la regola. Riprova.",
+          "save": "Non è stato possibile salvare le modifiche. Riprova.",
+          "delete": "Non è stato possibile eliminare la regola. Riprova."
+        }
+      }
+    },
+    "areaGuide": {
+      "title": "Guida alla zona",
+      "subtitle": "Racconta la zona agli ospiti e segnala i punti di interesse nei dintorni.",
+      "content": {
+        "label": "Testo guida",
+        "placeholder": "Descrivi la zona: cosa vedere, come muoversi, consigli utili...",
+        "save": "Salva",
+        "saved": "Salvato.",
+        "errors": {
+          "load": "Non è stato possibile caricare la guida alla zona.",
+          "save": "Non è stato possibile salvare il testo. Riprova."
+        }
+      },
+      "pois": {
+        "title": "Punti di interesse",
+        "empty": "Non hai ancora aggiunto nessun punto di interesse.",
+        "add": {
+          "nameLabel": "Nome del nuovo punto di interesse",
+          "namePlaceholder": "es. Spiaggia dei Conigli",
+          "button": "Aggiungi"
+        },
+        "fields": {
+          "nameLabel": "Nome",
+          "categoryLabel": "Categoria",
+          "distanceLabel": "Distanza",
+          "distancePlaceholder": "es. 500 m, 10 min a piedi",
+          "descriptionLabel": "Descrizione",
+          "externalUrlLabel": "Link esterno",
+          "latitudeLabel": "Latitudine",
+          "longitudeLabel": "Longitudine"
+        },
+        "categories": {
+          "RESTAURANT": "Ristorante",
+          "BEACH": "Spiaggia",
+          "ATTRACTION": "Attrazione",
+          "SHOP": "Negozio",
+          "TRANSPORT": "Trasporti",
+          "OTHER": "Altro"
+        },
+        "save": "Salva",
+        "saved": "Salvato.",
+        "delete": "Elimina",
+        "deleteConfirm": {
+          "title": "Eliminare questo punto di interesse?",
+          "confirm": "Elimina definitivamente",
+          "cancel": "Annulla"
+        },
+        "validation": {
+          "nameRequired": "Inserisci un nome.",
+          "latitudeInvalid": "La latitudine deve essere un numero tra -90 e 90.",
+          "longitudeInvalid": "La longitudine deve essere un numero tra -180 e 180."
+        },
+        "errors": {
+          "load": "Non è stato possibile caricare i punti di interesse.",
+          "add": "Non è stato possibile aggiungere il punto di interesse. Riprova.",
+          "save": "Non è stato possibile salvare le modifiche. Riprova.",
+          "delete": "Non è stato possibile eliminare il punto di interesse. Riprova."
+        }
+      }
     }
   },
   "profile": {
