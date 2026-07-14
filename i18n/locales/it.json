@@ -230,6 +230,43 @@
       "errors": {
         "load": "Non è stato possibile caricare i dati di occupazione."
       }
+    },
+    "optionals": {
+      "title": "Optional",
+      "subtitle": "Servizi ed extra a pagamento (o inclusi) offerti insieme al soggiorno.",
+      "empty": "Non hai ancora aggiunto nessun optional.",
+      "add": {
+        "nameLabel": "Nome del nuovo optional",
+        "namePlaceholder": "es. Pulizia finale",
+        "button": "Aggiungi"
+      },
+      "fields": {
+        "nameLabel": "Nome",
+        "descriptionLabel": "Descrizione",
+        "priceLabel": "Prezzo (€)",
+        "unitLabel": "Unità",
+        "unitPlaceholder": "es. a notte, a persona, una tantum"
+      },
+      "moveUp": "Sposta su",
+      "moveDown": "Sposta giù",
+      "save": "Salva",
+      "saved": "Salvato.",
+      "delete": "Elimina",
+      "deleteConfirm": {
+        "title": "Eliminare questo optional?",
+        "confirm": "Elimina definitivamente",
+        "cancel": "Annulla"
+      },
+      "validation": {
+        "nameRequired": "Inserisci un nome per l'optional.",
+        "priceInvalid": "Il prezzo deve essere un numero maggiore o uguale a 0."
+      },
+      "errors": {
+        "load": "Non è stato possibile caricare gli optional.",
+        "add": "Non è stato possibile aggiungere l'optional. Riprova.",
+        "save": "Non è stato possibile salvare le modifiche. Riprova.",
+        "delete": "Non è stato possibile eliminare l'optional. Riprova."
+      }
     }
   },
   "profile": {

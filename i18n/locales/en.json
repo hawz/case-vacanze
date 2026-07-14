@@ -230,6 +230,43 @@
       "errors": {
         "load": "We couldn't load the occupancy data."
       }
+    },
+    "optionals": {
+      "title": "Optionals",
+      "subtitle": "Paid (or included) extra services offered alongside the stay.",
+      "empty": "You haven't added any optionals yet.",
+      "add": {
+        "nameLabel": "Name of the new optional",
+        "namePlaceholder": "e.g. Final cleaning",
+        "button": "Add"
+      },
+      "fields": {
+        "nameLabel": "Name",
+        "descriptionLabel": "Description",
+        "priceLabel": "Price (€)",
+        "unitLabel": "Unit",
+        "unitPlaceholder": "e.g. per night, per person, one-time"
+      },
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "save": "Save",
+      "saved": "Saved.",
+      "delete": "Delete",
+      "deleteConfirm": {
+        "title": "Delete this optional?",
+        "confirm": "Delete permanently",
+        "cancel": "Cancel"
+      },
+      "validation": {
+        "nameRequired": "Enter a name for the optional.",
+        "priceInvalid": "Price must be a number greater than or equal to 0."
+      },
+      "errors": {
+        "load": "We couldn't load the optionals.",
+        "add": "We couldn't add the optional. Please try again.",
+        "save": "We couldn't save the changes. Please try again.",
+        "delete": "We couldn't delete the optional. Please try again."
+      }
     }
   },
   "profile": {
