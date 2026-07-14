@@ -377,6 +377,48 @@
           "delete": "We couldn't delete the point of interest. Please try again."
         }
       }
+    },
+    "otaLinks": {
+      "title": "External platforms",
+      "subtitle": "Link your property to listings already published on other platforms.",
+      "platforms": {
+        "AIRBNB": "Airbnb",
+        "BOOKING": "Booking.com",
+        "OTHER": "Other"
+      },
+      "empty": "You haven't linked any platform yet.",
+      "add": {
+        "platformLabel": "Platform",
+        "urlLabel": "Listing URL",
+        "urlPlaceholder": "https://...",
+        "button": "Add"
+      },
+      "fields": {
+        "platformLabel": "Platform",
+        "urlLabel": "URL",
+        "labelLabel": "Label (optional)",
+        "labelPlaceholder": "e.g. VRBO"
+      },
+      "moveUp": "Move up",
+      "moveDown": "Move down",
+      "save": "Save",
+      "saved": "Saved.",
+      "delete": "Delete",
+      "deleteConfirm": {
+        "title": "Delete this link?",
+        "confirm": "Delete permanently",
+        "cancel": "Cancel"
+      },
+      "validation": {
+        "urlRequired": "Enter the listing URL.",
+        "urlInvalid": "Enter a valid URL (e.g. https://...)."
+      },
+      "errors": {
+        "load": "We couldn't load the linked platforms.",
+        "add": "We couldn't add the link. Please try again.",
+        "save": "We couldn't save the changes. Please try again.",
+        "delete": "We couldn't delete the link. Please try again."
+      }
     }
   },
   "profile": {
