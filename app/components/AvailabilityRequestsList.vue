@@ -9,6 +9,12 @@
 // Nessun form di creazione qui (le richieste arrivano solo dagli ospiti):
 // solo elenco, dettaglio espandibile e cambio stato (niente eliminazione,
 // non richiesta dall'AC).
+//
+// EPIC 20/US-2005: confronto con blocked_dates (nessuna nuova RLS: stessa
+// policy "blocked_dates_owner_write" già usata da BlockedDatesCalendar.vue,
+// da cui è riusata anche la logica di confronto intervalli) + blocco
+// automatico del calendario quando una richiesta viene accettata e le date
+// non si sovrappongono già a un periodo esistente.
 const STATUSES = ['NEW', 'CONTACTED', 'ACCEPTED', 'REJECTED'] as const
 type RequestStatus = typeof STATUSES[number]
 
@@ -25,6 +31,11 @@ interface AvailabilityRequest {
   created_at: string
 }
 
+interface BlockedRange {
+  start_date: string
+  end_date: string
+}
+
 const props = defineProps<{ propertyId: string }>()
 
 const { t, locale } = useI18n()
@@ -32,6 +43,25 @@ const supabase = useSupabaseClient()
 
 function statusLabel(status: string) {
   return t(`requests.statuses.${status}`)
+}
+
+const blockedRanges = ref<BlockedRange[]>([])
+
+async function loadBlockedRanges() {
+  const { data } = await supabase
+    .from('blocked_dates')
+    .select('start_date, end_date')
+    .eq('property_id', props.propertyId)
+
+  blockedRanges.value = data ?? []
+}
+
+function rangesOverlap(aStart: string, aEnd: string, bStart: string, bEnd: string) {
+  return aStart <= bEnd && bStart <= aEnd
+}
+
+function hasOverlap(request: AvailabilityRequest) {
+  return blockedRanges.value.some(b => rangesOverlap(request.check_in, request.check_out, b.start_date, b.end_date))
 }
 
 // Niente datetimeFormats configurato in nuxt.config.ts (il modulo i18n non
@@ -44,6 +74,12 @@ function formatDate(value: string) {
 const requests = ref<AvailabilityRequest[]>([])
 const isLoading = ref(true)
 const loadError = ref('')
+
+// Ultimo stato salvato per richiesta (diverso da request.status, che viene
+// mutato subito dal v-model della select appena l'owner cambia la scelta,
+// prima ancora di salvare): serve per riconoscere il PASSAGGIO a "Accettata"
+// nel momento del salvataggio, non semplicemente "lo stato è Accettata".
+const lastSavedStatus = ref<Record<string, RequestStatus>>({})
 
 const newCount = computed(() => requests.value.filter(r => r.status === 'NEW').length)
 
@@ -65,9 +101,15 @@ async function loadRequests() {
   }
 
   requests.value = data ?? []
+  for (const request of requests.value) {
+    lastSavedStatus.value[request.id] = request.status
+  }
 }
 
-onMounted(loadRequests)
+onMounted(() => {
+  loadRequests()
+  loadBlockedRanges()
+})
 
 // --- Dettaglio espandibile (US-1402) ---
 const expandedId = ref<string | null>(null)
@@ -80,9 +122,11 @@ function toggleExpanded(id: string) {
 const savingId = ref<string | null>(null)
 const savedId = ref<string | null>(null)
 const saveError = ref<Record<string, string>>({})
+const autoBlockMessage = ref<Record<string, string>>({})
 
 async function saveStatus(request: AvailabilityRequest) {
   saveError.value = { ...saveError.value, [request.id]: '' }
+  autoBlockMessage.value = { ...autoBlockMessage.value, [request.id]: '' }
   savingId.value = request.id
 
   const { error } = await supabase
@@ -95,6 +139,38 @@ async function saveStatus(request: AvailabilityRequest) {
   if (error) {
     saveError.value = { ...saveError.value, [request.id]: t('requests.errors.save') }
     return
+  }
+
+  // EPIC 20/US-2005: blocco automatico del calendario solo al PASSAGGIO a
+  // "Accettata" (non ad ogni salvataggio successivo a stato invariato) e
+  // solo se le date non si sovrappongono già a un periodo esistente.
+  const previousStatus = lastSavedStatus.value[request.id]
+  lastSavedStatus.value[request.id] = request.status
+
+  if (request.status === 'ACCEPTED' && previousStatus !== 'ACCEPTED') {
+    if (hasOverlap(request)) {
+      autoBlockMessage.value = { ...autoBlockMessage.value, [request.id]: t('requests.autoBlock.skippedOverlap') }
+    }
+    else {
+      const { data: blockData, error: blockError } = await supabase
+        .from('blocked_dates')
+        .insert({
+          property_id: props.propertyId,
+          start_date: request.check_in,
+          end_date: request.check_out,
+          reason: `${request.guest_name} (${request.email})`,
+        })
+        .select('start_date, end_date')
+        .single()
+
+      if (blockError || !blockData) {
+        autoBlockMessage.value = { ...autoBlockMessage.value, [request.id]: t('requests.autoBlock.error') }
+      }
+      else {
+        blockedRanges.value.push(blockData)
+        autoBlockMessage.value = { ...autoBlockMessage.value, [request.id]: t('requests.autoBlock.created') }
+      }
+    }
   }
 
   savedId.value = request.id
@@ -182,6 +258,19 @@ async function saveStatus(request: AvailabilityRequest) {
             <strong>{{ t('requests.fields.receivedAt') }}:</strong> {{ formatDate(request.created_at) }}
           </p>
 
+          <p
+            v-if="hasOverlap(request)"
+            class="request-card__overlap request-card__overlap--warning"
+          >
+            {{ t('requests.overlapWarning') }}
+          </p>
+          <p
+            v-else
+            class="request-card__overlap request-card__overlap--ok"
+          >
+            {{ t('requests.overlapOk') }}
+          </p>
+
           <div class="request-card__field">
             <label class="request-card__label">{{ t('requests.fields.statusLabel') }}</label>
             <select
@@ -209,6 +298,12 @@ async function saveStatus(request: AvailabilityRequest) {
             class="request-card__saved"
           >
             {{ t('requests.saved') }}
+          </p>
+          <p
+            v-if="autoBlockMessage[request.id]"
+            class="request-card__auto-block"
+          >
+            {{ autoBlockMessage[request.id] }}
           </p>
 
           <button
@@ -328,6 +423,25 @@ async function saveStatus(request: AvailabilityRequest) {
 .request-card__saved {
   @apply text-xs;
   color: #047857;
+}
+
+.request-card__overlap {
+  @apply rounded-md px-3 py-2 text-sm;
+}
+
+.request-card__overlap--warning {
+  background-color: #fef2f2;
+  color: #991b1b;
+}
+
+.request-card__overlap--ok {
+  background-color: #ecfdf5;
+  color: #047857;
+}
+
+.request-card__auto-block {
+  @apply text-xs;
+  color: var(--color-muted);
 }
 
 .request-card__save {
