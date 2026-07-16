@@ -36,7 +36,29 @@ async function loadProperties() {
   propertyStore.setProperties(data ?? [])
 }
 
-onMounted(loadProperties)
+// EPIC 14/US-1403: badge con contatore di richieste "Nuove" per proprietà,
+// accanto al link "Richieste" di ogni riga. Query separata (non filtra per
+// proprietà: RLS "availability_requests_owner_read" limita già ai risultati
+// dell'owner corrente), i conteggi si ottengono raggruppando client-side.
+const newRequestCounts = ref<Record<string, number>>({})
+
+async function loadNewRequestCounts() {
+  const { data } = await supabase
+    .from('availability_requests')
+    .select('property_id')
+    .eq('status', 'NEW')
+
+  const counts: Record<string, number> = {}
+  for (const row of data ?? []) {
+    counts[row.property_id] = (counts[row.property_id] ?? 0) + 1
+  }
+  newRequestCounts.value = counts
+}
+
+onMounted(() => {
+  loadProperties()
+  loadNewRequestCounts()
+})
 
 // --- Creazione (US-202): un solo campo (nome); lo slug si genera da quello.
 // Il resto dei dati della proprietà si compila nel wizard (Epic 3+), non qui.
@@ -284,6 +306,18 @@ function statusModifier(status: string) {
           >
             {{ t('properties.actions.announcements') }}
           </NuxtLink>
+          <NuxtLink
+            :to="localePath(`/app/properties/${property.id}/requests`)"
+            class="property-card__link"
+          >
+            {{ t('properties.actions.requests') }}
+            <span
+              v-if="newRequestCounts[property.id]"
+              class="property-card__requests-badge"
+            >
+              {{ newRequestCounts[property.id] }}
+            </span>
+          </NuxtLink>
           <button
             type="button"
             class="property-card__delete"
@@ -458,6 +492,12 @@ function statusModifier(status: string) {
 .property-card__link {
   @apply font-medium underline underline-offset-2;
   color: var(--color-primary);
+}
+
+.property-card__requests-badge {
+  @apply ml-1 rounded-full px-1.5 py-0.5 text-xs font-semibold no-underline;
+  background-color: #fee2e2;
+  color: #991b1b;
 }
 
 .property-card__delete {
