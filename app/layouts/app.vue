@@ -38,6 +38,13 @@ async function onLogout() {
 
       <div class="app-shell__user">
         <NuxtLink
+          v-if="authStore.isAdmin"
+          :to="localePath('/app/admin/properties')"
+          class="app-shell__admin-link"
+        >
+          {{ t('nav.admin') }}
+        </NuxtLink>
+        <NuxtLink
           :to="localePath('/app/profile')"
           class="app-shell__user-name"
         >
@@ -88,6 +95,12 @@ async function onLogout() {
 
 .app-shell__user {
   @apply flex items-center gap-3 text-sm;
+}
+
+.app-shell__admin-link {
+  @apply rounded-full px-2 py-0.5 text-xs font-medium underline-offset-2 hover:underline;
+  background-color: #fef3c7;
+  color: #92400e;
 }
 
 .app-shell__user-name {
