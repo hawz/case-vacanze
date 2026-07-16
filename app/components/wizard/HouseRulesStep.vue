@@ -564,7 +564,7 @@ async function confirmDelete(rule: HouseRule) {
 }
 
 .fixed-rule__toggle {
-  @apply flex gap-2;
+  @apply flex flex-wrap gap-2;
 }
 
 .fixed-rule__toggle-button {
@@ -678,7 +678,7 @@ async function confirmDelete(rule: HouseRule) {
 }
 
 .house-rule-card__confirm-actions {
-  @apply flex gap-3;
+  @apply flex flex-wrap gap-3;
 }
 
 .house-rule-card__confirm-cancel {

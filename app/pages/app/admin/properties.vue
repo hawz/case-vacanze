@@ -397,7 +397,7 @@ async function reactivate(property: AdminProperty, target: 'PUBLISHED' | 'DRAFT'
 }
 
 .admin-property-card__suspend-actions {
-  @apply flex gap-2;
+  @apply flex flex-wrap gap-2;
 }
 
 .admin-page__back {

@@ -664,7 +664,7 @@ async function confirmDelete(block: BlockedDate) {
 }
 
 .blocked-card__confirm-actions {
-  @apply flex gap-3;
+  @apply flex flex-wrap gap-3;
 }
 
 .blocked-card__confirm-cancel {

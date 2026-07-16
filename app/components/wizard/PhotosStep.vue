@@ -629,7 +629,7 @@ async function confirmDelete(photo: Photo) {
 }
 
 .photo-card__confirm-actions {
-  @apply flex gap-3;
+  @apply flex flex-wrap gap-3;
 }
 
 .photo-card__confirm-cancel {

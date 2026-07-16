@@ -542,7 +542,7 @@ async function confirmDelete(optional: OptionalItem) {
 }
 
 .optional-card__confirm-actions {
-  @apply flex gap-3;
+  @apply flex flex-wrap gap-3;
 }
 
 .optional-card__confirm-cancel {

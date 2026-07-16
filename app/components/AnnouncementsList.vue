@@ -593,7 +593,7 @@ async function confirmDelete(announcement: Announcement) {
 }
 
 .announcement-card__confirm-actions {
-  @apply flex gap-3;
+  @apply flex flex-wrap gap-3;
 }
 
 .announcement-card__confirm-cancel {

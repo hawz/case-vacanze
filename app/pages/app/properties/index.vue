@@ -499,7 +499,7 @@ function statusModifier(status: string) {
 }
 
 .property-card__actions {
-  @apply mt-3 flex gap-4 text-sm;
+  @apply mt-3 flex flex-wrap gap-x-4 gap-y-2 text-sm;
 }
 
 .property-card__link {
@@ -535,7 +535,7 @@ function statusModifier(status: string) {
 }
 
 .property-card__confirm-actions {
-  @apply flex gap-3;
+  @apply flex flex-wrap gap-3;
 }
 
 .property-card__confirm-cancel {

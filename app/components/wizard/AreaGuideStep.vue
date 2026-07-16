@@ -656,7 +656,7 @@ async function confirmDelete(poi: PointOfInterest) {
 }
 
 .poi-card__confirm-actions {
-  @apply flex gap-3;
+  @apply flex flex-wrap gap-3;
 }
 
 .poi-card__confirm-cancel {

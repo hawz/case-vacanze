@@ -544,7 +544,7 @@ async function confirmDelete(link: OtaLink) {
 }
 
 .ota-link-card__confirm-actions {
-  @apply flex gap-3;
+  @apply flex flex-wrap gap-3;
 }
 
 .ota-link-card__confirm-cancel {

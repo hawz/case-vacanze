@@ -338,6 +338,6 @@ async function confirmPromote(user: AdminUser) {
 }
 
 .admin-user-card__confirm-actions {
-  @apply flex gap-2;
+  @apply flex flex-wrap gap-2;
 }
 </style>
