@@ -92,8 +92,10 @@
       "edit": "Apri",
       "calendar": "Calendario",
       "announcements": "Comunicazioni",
+      "requests": "Richieste",
       "delete": "Elimina"
     },
+    "newRequestsBadge": "{count} nuove",
     "deleteConfirm": {
       "title": "Eliminare questa proprietà?",
       "message": "Verranno eliminati definitivamente anche foto, optional, regole della casa, guida alla zona, annunci e richieste di disponibilità collegate a questa proprietà.",
@@ -194,6 +196,37 @@
       "add": "Non è stato possibile pubblicare l'annuncio. Riprova.",
       "save": "Non è stato possibile salvare le modifiche. Riprova.",
       "delete": "Non è stato possibile eliminare l'annuncio. Riprova."
+    }
+  },
+  "requests": {
+    "title": "Richieste di disponibilità",
+    "subtitle": "Gestisci le richieste ricevute dagli ospiti tramite il mini-sito.",
+    "backLink": "Torna all'elenco",
+    "loading": "Caricamento...",
+    "empty": "Non hai ancora ricevuto nessuna richiesta.",
+    "statuses": {
+      "NEW": "Nuova",
+      "CONTACTED": "Contattato",
+      "ACCEPTED": "Accettata",
+      "REJECTED": "Rifiutata"
+    },
+    "fields": {
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "guestsCount": "Ospiti",
+      "email": "Email",
+      "phone": "Telefono",
+      "message": "Messaggio",
+      "receivedAt": "Ricevuta il",
+      "statusLabel": "Stato"
+    },
+    "viewDetails": "Vedi dettagli",
+    "hideDetails": "Nascondi dettagli",
+    "save": "Salva",
+    "saved": "Salvato.",
+    "errors": {
+      "load": "Non è stato possibile caricare le richieste.",
+      "save": "Non è stato possibile salvare lo stato. Riprova."
     }
   },
   "wizard": {

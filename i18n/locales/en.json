@@ -92,8 +92,10 @@
       "edit": "Open",
       "calendar": "Calendar",
       "announcements": "Announcements",
+      "requests": "Requests",
       "delete": "Delete"
     },
+    "newRequestsBadge": "{count} new",
     "deleteConfirm": {
       "title": "Delete this property?",
       "message": "Photos, optionals, house rules, area guide, announcements and availability requests linked to this property will be permanently deleted too.",
@@ -194,6 +196,37 @@
       "add": "We couldn't publish the announcement. Please try again.",
       "save": "We couldn't save the changes. Please try again.",
       "delete": "We couldn't delete the announcement. Please try again."
+    }
+  },
+  "requests": {
+    "title": "Availability requests",
+    "subtitle": "Manage the requests received from guests through the mini-site.",
+    "backLink": "Back to the list",
+    "loading": "Loading...",
+    "empty": "You haven't received any request yet.",
+    "statuses": {
+      "NEW": "New",
+      "CONTACTED": "Contacted",
+      "ACCEPTED": "Accepted",
+      "REJECTED": "Rejected"
+    },
+    "fields": {
+      "checkIn": "Check-in",
+      "checkOut": "Check-out",
+      "guestsCount": "Guests",
+      "email": "Email",
+      "phone": "Phone",
+      "message": "Message",
+      "receivedAt": "Received on",
+      "statusLabel": "Status"
+    },
+    "viewDetails": "View details",
+    "hideDetails": "Hide details",
+    "save": "Save",
+    "saved": "Saved.",
+    "errors": {
+      "load": "We couldn't load the requests.",
+      "save": "We couldn't save the status. Please try again."
     }
   },
   "wizard": {
