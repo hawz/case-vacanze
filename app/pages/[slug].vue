@@ -1,11 +1,23 @@
 <script setup lang="ts">
-// EPIC 15 — Mini-sito pubblico (US-1501/1502/1503 + US-1102, anteprima da
-// PublishStep.vue). Pagina pubblica, fuori da /app, layout "default"
+// EPIC 15 — Mini-sito pubblico (US-1501/1502/1503/1504 + US-1102, anteprima
+// da PublishStep.vue). Pagina pubblica, fuori da /app, layout "default"
 // (nessun header autenticato). Nessuna RLS da aggiungere: tutte le tabelle
 // coinvolte hanno già una policy "*_public_read" gated su
 // properties.status = 'PUBLISHED' (schema.sql), più "*_owner_read"/
-// "owns_property" per l'owner — vedi il commento su loadMiniSite per come
-// questo si traduce nella query della proprietà.
+// "owns_property" per l'owner — vedi il commento sulla query della
+// proprietà per come questo si traduce nella query.
+//
+// US-1504: i tag OG/Twitter Card devono comparire nell'HTML della prima
+// risposta, non solo dopo l'idratazione — i bot di anteprima social non
+// eseguono JavaScript. Per questo il caricamento dati usa useAsyncData
+// (SSR-aware: Nuxt attende la Promise prima di renderizzare la pagina)
+// invece di onMounted (solo client, usato nella prima versione di questa
+// pagina prima di questa story). L'anti-leak per proprietà non pubblicate
+// resta comunque garantito dalla RLS stessa, non da questa logica: un bot
+// di anteprima social non ha il cookie di sessione dell'owner, quindi la
+// query vede "nessuna riga" esattamente come un visitatore anonimo — il
+// controllo qui sotto su notFound/status è solo un ulteriore livello,
+// rilevante soprattutto per l'anteprima nel browser dell'owner stesso.
 import { getTheme } from '~~/config/themes'
 
 interface PropertyDetail {
@@ -23,34 +35,29 @@ interface PropertyDetail {
   status: 'DRAFT' | 'PUBLISHED' | 'SUSPENDED'
 }
 
+interface MiniSiteData {
+  property: PropertyDetail
+  photos: { id: string, url: string, alt_text: string | null, is_cover: boolean }[]
+  occupancy: { max_guests: number, bedrooms: number, bathrooms: number, beds: number } | null
+  optionals: { id: string, name: string, description: string | null, price: number | null, unit: string | null }[]
+  houseRules: { id: string, type: 'PETS' | 'SMOKING' | 'PARTIES' | 'OTHER', description: string | null }[]
+  areaGuideContent: string | null
+  pois: { id: string, name: string, category: 'RESTAURANT' | 'BEACH' | 'ATTRACTION' | 'SHOP' | 'TRANSPORT' | 'OTHER', distance: string | null, description: string | null, external_url: string | null }[]
+  activeAnnouncements: { id: string, title: string, body: string, type: 'INFO' | 'WARNING' | 'URGENT' }[]
+  otaLinks: { id: string, platform: 'AIRBNB' | 'BOOKING' | 'OTHER', url: string, label: string | null }[]
+  blockedRanges: { start_date: string, end_date: string }[]
+}
+
 const { t } = useI18n()
 const supabase = useSupabaseClient()
 const route = useRoute()
+const requestUrl = useRequestURL()
 
 definePageMeta({ layout: 'default' })
 
-const slug = route.params.slug as string
+const slug = computed(() => route.params.slug as string)
 
-const isLoading = ref(true)
-const notFound = ref(false)
-const loadError = ref('')
-
-const property = ref<PropertyDetail | null>(null)
-const photos = ref<{ id: string, url: string, alt_text: string | null, is_cover: boolean }[]>([])
-const occupancy = ref<{ max_guests: number, bedrooms: number, bathrooms: number, beds: number } | null>(null)
-const optionals = ref<{ id: string, name: string, description: string | null, price: number | null, unit: string | null }[]>([])
-const houseRules = ref<{ id: string, type: 'PETS' | 'SMOKING' | 'PARTIES' | 'OTHER', description: string | null }[]>([])
-const areaGuideContent = ref<string | null>(null)
-const pois = ref<{ id: string, name: string, category: 'RESTAURANT' | 'BEACH' | 'ATTRACTION' | 'SHOP' | 'TRANSPORT' | 'OTHER', distance: string | null, description: string | null, external_url: string | null }[]>([])
-const activeAnnouncements = ref<{ id: string, title: string, body: string, type: 'INFO' | 'WARNING' | 'URGENT' }[]>([])
-const otaLinks = ref<{ id: string, platform: 'AIRBNB' | 'BOOKING' | 'OTHER', url: string, label: string | null }[]>([])
-const blockedRanges = ref<{ start_date: string, end_date: string }[]>([])
-
-async function loadMiniSite() {
-  isLoading.value = true
-  notFound.value = false
-  loadError.value = ''
-
+async function fetchMiniSite(): Promise<MiniSiteData | null> {
   // Nessun filtro status qui: si lascia decidere alla RLS (combinazione di
   // "properties_public_read_published" e "properties_owner_read_own").
   // Un visitatore anonimo vede solo le proprietà PUBLISHED; l'owner vede
@@ -60,22 +67,11 @@ async function loadMiniSite() {
   const { data: propertyData, error: propertyError } = await supabase
     .from('properties')
     .select('id, name, property_type, address_line, city, province, short_description, long_description, theme_id, check_in_time, check_out_time, status')
-    .eq('slug', slug)
+    .eq('slug', slug.value)
     .maybeSingle()
 
-  if (propertyError) {
-    isLoading.value = false
-    loadError.value = t('minisite.errors.load')
-    return
-  }
-
-  if (!propertyData) {
-    isLoading.value = false
-    notFound.value = true
-    return
-  }
-
-  property.value = propertyData
+  if (propertyError) throw propertyError
+  if (!propertyData) return null
 
   const [photosRes, occupancyRes, optionalsRes, houseRulesRes, areaGuideRes, poisRes, announcementsRes, otaLinksRes, blockedDatesRes] = await Promise.all([
     supabase.from('photos').select('id, url, alt_text, is_cover').eq('property_id', propertyData.id).order('sort_order', { ascending: true }),
@@ -94,25 +90,46 @@ async function loadMiniSite() {
     supabase.from('blocked_dates').select('start_date, end_date').eq('property_id', propertyData.id).order('start_date', { ascending: true }),
   ])
 
-  isLoading.value = false
-
-  photos.value = photosRes.data ?? []
-  occupancy.value = occupancyRes.data ?? null
-  optionals.value = optionalsRes.data ?? []
-  houseRules.value = houseRulesRes.data ?? []
-  areaGuideContent.value = areaGuideRes.data?.content ?? null
-  pois.value = poisRes.data ?? []
-  otaLinks.value = otaLinksRes.data ?? []
-  blockedRanges.value = blockedDatesRes.data ?? []
-
   const now = new Date()
   const severity: Record<string, number> = { URGENT: 0, WARNING: 1, INFO: 2 }
-  activeAnnouncements.value = (announcementsRes.data ?? [])
+  const activeAnnouncements = (announcementsRes.data ?? [])
     .filter(a => (!a.visible_from || new Date(a.visible_from) <= now) && (!a.visible_to || new Date(a.visible_to) >= now))
     .sort((a, b) => severity[a.type] - severity[b.type])
+
+  return {
+    property: propertyData,
+    photos: photosRes.data ?? [],
+    occupancy: occupancyRes.data ?? null,
+    optionals: optionalsRes.data ?? [],
+    houseRules: houseRulesRes.data ?? [],
+    areaGuideContent: areaGuideRes.data?.content ?? null,
+    pois: poisRes.data ?? [],
+    activeAnnouncements,
+    otaLinks: otaLinksRes.data ?? [],
+    blockedRanges: blockedDatesRes.data ?? [],
+  }
 }
 
-onMounted(loadMiniSite)
+const { data, pending, error: fetchError } = await useAsyncData<MiniSiteData | null>(
+  () => `minisite-${slug.value}`,
+  fetchMiniSite,
+  { watch: [slug] },
+)
+
+const isLoading = computed(() => pending.value)
+const loadError = computed(() => (fetchError.value ? t('minisite.errors.load') : ''))
+const notFound = computed(() => !pending.value && !fetchError.value && data.value === null)
+
+const property = computed(() => data.value?.property ?? null)
+const photos = computed(() => data.value?.photos ?? [])
+const occupancy = computed(() => data.value?.occupancy ?? null)
+const optionals = computed(() => data.value?.optionals ?? [])
+const houseRules = computed(() => data.value?.houseRules ?? [])
+const areaGuideContent = computed(() => data.value?.areaGuideContent ?? null)
+const pois = computed(() => data.value?.pois ?? [])
+const activeAnnouncements = computed(() => data.value?.activeAnnouncements ?? [])
+const otaLinks = computed(() => data.value?.otaLinks ?? [])
+const blockedRanges = computed(() => data.value?.blockedRanges ?? [])
 
 const theme = computed(() => getTheme(property.value?.theme_id ?? 'default'))
 const themeVars = computed(() => ({
@@ -128,6 +145,39 @@ const themeVars = computed(() => ({
 const locationLine = computed(() => {
   if (!property.value) return ''
   return [property.value.address_line, property.value.city, property.value.province].filter(Boolean).join(', ')
+})
+
+// --- US-1504: tag SEO e anteprima di condivisione social ---
+const coverImageUrl = computed(() => {
+  const cover = photos.value.find(p => p.is_cover) ?? photos.value[0]
+  return cover?.url
+})
+
+const metaDescription = computed(() => {
+  const raw = property.value?.short_description?.trim() || property.value?.long_description?.trim() || ''
+  if (!raw) return t('minisite.metaFallbackDescription')
+  const singleLine = raw.replace(/\s+/g, ' ')
+  return singleLine.length > 200 ? `${singleLine.slice(0, 197)}...` : singleLine
+})
+
+// Ulteriore livello, non la difesa principale (vedi commento in cima al
+// file): niente indicizzazione per pagine inesistenti o non pubblicate.
+const isUnlisted = computed(() => notFound.value || (property.value != null && property.value.status !== 'PUBLISHED'))
+
+useSeoMeta({
+  title: () => (notFound.value ? t('minisite.notFound.title') : property.value?.name),
+  description: () => (notFound.value ? t('minisite.notFound.message') : metaDescription.value),
+  ogTitle: () => property.value?.name,
+  ogDescription: () => metaDescription.value,
+  ogImage: () => coverImageUrl.value,
+  ogUrl: () => requestUrl.href,
+  ogType: 'website',
+  ogSiteName: 'Portale Case Vacanze',
+  twitterCard: 'summary_large_image',
+  twitterTitle: () => property.value?.name,
+  twitterDescription: () => metaDescription.value,
+  twitterImage: () => coverImageUrl.value,
+  robots: () => (isUnlisted.value ? 'noindex, nofollow' : undefined),
 })
 </script>
 
