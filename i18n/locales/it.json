@@ -229,6 +229,68 @@
       "save": "Non è stato possibile salvare lo stato. Riprova."
     }
   },
+  "minisite": {
+    "notFound": {
+      "title": "Proprietà non trovata",
+      "message": "Questa pagina non esiste o non è al momento disponibile."
+    },
+    "occupancy": {
+      "maxGuests": "Ospiti",
+      "bedrooms": "Camere",
+      "bathrooms": "Bagni",
+      "beds": "Letti"
+    },
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "optionals": {
+      "title": "Optional",
+      "included": "Incluso"
+    },
+    "houseRules": {
+      "title": "Regole della casa",
+      "types": {
+        "PETS": "Animali",
+        "SMOKING": "Fumo",
+        "PARTIES": "Feste",
+        "OTHER": "Altro"
+      }
+    },
+    "areaGuide": {
+      "title": "La zona",
+      "poisTitle": "Punti di interesse",
+      "categories": {
+        "RESTAURANT": "Ristorante",
+        "BEACH": "Spiaggia",
+        "ATTRACTION": "Attrazione",
+        "SHOP": "Negozio",
+        "TRANSPORT": "Trasporti",
+        "OTHER": "Altro"
+      }
+    },
+    "announcements": {
+      "title": "Avvisi"
+    },
+    "otaLinks": {
+      "title": "Prenota anche su",
+      "platforms": {
+        "AIRBNB": "Airbnb",
+        "BOOKING": "Booking.com",
+        "OTHER": "Altro"
+      }
+    },
+    "calendar": {
+      "title": "Disponibilità",
+      "prevMonth": "Mese precedente",
+      "nextMonth": "Mese successivo",
+      "legendBlocked": "Non disponibile",
+      "legendAvailable": "Disponibile"
+    },
+    "loading": "Caricamento...",
+    "previewBanner": "Anteprima — questa proprietà non è ancora pubblicata e non è visibile agli ospiti.",
+    "errors": {
+      "load": "Non è stato possibile caricare la pagina."
+    }
+  },
   "wizard": {
     "nav": {
       "label": "Passaggi configurazione proprietà",
@@ -575,6 +637,7 @@
         "PUBLISHED": "Pubblicata",
         "SUSPENDED": "Sospesa"
       },
+      "previewLink": "Anteprima del mini-sito",
       "missingRequirementsWarning": "Completa i requisiti mancanti prima di poter pubblicare.",
       "publish": "Pubblica",
       "publishedMessage": "La tua proprietà è pubblicata ed è visibile agli ospiti.",

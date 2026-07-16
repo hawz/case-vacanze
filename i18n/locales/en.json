@@ -229,6 +229,68 @@
       "save": "We couldn't save the status. Please try again."
     }
   },
+  "minisite": {
+    "notFound": {
+      "title": "Property not found",
+      "message": "This page doesn't exist or isn't currently available."
+    },
+    "occupancy": {
+      "maxGuests": "Guests",
+      "bedrooms": "Bedrooms",
+      "bathrooms": "Bathrooms",
+      "beds": "Beds"
+    },
+    "checkIn": "Check-in",
+    "checkOut": "Check-out",
+    "optionals": {
+      "title": "Optionals",
+      "included": "Included"
+    },
+    "houseRules": {
+      "title": "House rules",
+      "types": {
+        "PETS": "Pets",
+        "SMOKING": "Smoking",
+        "PARTIES": "Parties",
+        "OTHER": "Other"
+      }
+    },
+    "areaGuide": {
+      "title": "The area",
+      "poisTitle": "Points of interest",
+      "categories": {
+        "RESTAURANT": "Restaurant",
+        "BEACH": "Beach",
+        "ATTRACTION": "Attraction",
+        "SHOP": "Shop",
+        "TRANSPORT": "Transport",
+        "OTHER": "Other"
+      }
+    },
+    "announcements": {
+      "title": "Notices"
+    },
+    "otaLinks": {
+      "title": "Also book on",
+      "platforms": {
+        "AIRBNB": "Airbnb",
+        "BOOKING": "Booking.com",
+        "OTHER": "Other"
+      }
+    },
+    "calendar": {
+      "title": "Availability",
+      "prevMonth": "Previous month",
+      "nextMonth": "Next month",
+      "legendBlocked": "Not available",
+      "legendAvailable": "Available"
+    },
+    "loading": "Loading...",
+    "previewBanner": "Preview — this property isn't published yet and isn't visible to guests.",
+    "errors": {
+      "load": "We couldn't load the page."
+    }
+  },
   "wizard": {
     "nav": {
       "label": "Property setup steps",
@@ -575,6 +637,7 @@
         "PUBLISHED": "Published",
         "SUSPENDED": "Suspended"
       },
+      "previewLink": "Preview mini-site",
       "missingRequirementsWarning": "Complete the missing requirements before you can publish.",
       "publish": "Publish",
       "publishedMessage": "Your property is published and visible to guests.",
