@@ -309,6 +309,12 @@
       "title": "Proprietà non trovata",
       "message": "Questa pagina non esiste o non è al momento disponibile."
     },
+    "gallery": {
+      "openLabel": "Apri la foto {n} a schermo intero",
+      "close": "Chiudi",
+      "previous": "Foto precedente",
+      "next": "Foto successiva"
+    },
     "occupancy": {
       "maxGuests": "Ospiti",
       "bedrooms": "Camere",

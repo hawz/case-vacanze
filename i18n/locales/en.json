@@ -309,6 +309,12 @@
       "title": "Property not found",
       "message": "This page doesn't exist or isn't currently available."
     },
+    "gallery": {
+      "openLabel": "Open photo {n} full screen",
+      "close": "Close",
+      "previous": "Previous photo",
+      "next": "Next photo"
+    },
     "occupancy": {
       "maxGuests": "Guests",
       "bedrooms": "Bedrooms",
