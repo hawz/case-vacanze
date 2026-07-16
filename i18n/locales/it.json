@@ -287,6 +287,7 @@
     },
     "loading": "Caricamento...",
     "previewBanner": "Anteprima — questa proprietà non è ancora pubblicata e non è visibile agli ospiti.",
+    "metaFallbackDescription": "Scopri questa casa vacanza su Portale Case Vacanze.",
     "errors": {
       "load": "Non è stato possibile caricare la pagina."
     }
