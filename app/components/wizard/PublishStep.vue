@@ -1,7 +1,10 @@
 <script setup lang="ts">
-// EPIC 11 — Wizard: Pubblicazione (solo US-1101). US-1102 (anteprima del
-// mini-sito) è bloccata: dipende dal mini-sito pubblico (EPIC 15), che non
-// esiste ancora — vedi docs/backlog.md.
+// EPIC 11 — Wizard: Pubblicazione (US-1101 + US-1102, quest'ultima
+// completata in EPIC 15 quando il mini-sito pubblico è diventato
+// disponibile). Il link "Anteprima" funziona anche in DRAFT/SUSPENDED
+// perché la pagina /[slug].vue non filtra per status lato query: si affida
+// alla RLS (properties_owner_read_own), che lascia vedere all'owner anche
+// le proprie proprietà non pubblicate.
 //
 // Stato SUSPENDED è di sola lettura qui: la riattivazione è compito
 // dell'admin (US-1703, EPIC 17), non dell'owner da questo step.
@@ -26,6 +29,7 @@ const loadError = ref('')
 
 const status = ref<PropertyStatus>('DRAFT')
 const suspensionReason = ref<string | null>(null)
+const slug = ref('')
 const requirements = ref<Requirement[]>([])
 
 const allSatisfied = computed(() => requirements.value.every(r => r.satisfied))
@@ -61,6 +65,7 @@ async function loadStatus() {
   const property = propertyResult.data
   status.value = property.status
   suspensionReason.value = property.suspension_reason
+  slug.value = property.slug
 
   requirements.value = [
     { key: 'name', label: t('wizard.publish.requirements.name'), satisfied: !!property.name?.trim(), step: 'general-info' },
@@ -163,6 +168,15 @@ async function unpublish() {
         {{ t('wizard.publish.status.label') }}:
         <strong>{{ t(`wizard.publish.status.${status}`) }}</strong>
       </p>
+
+      <NuxtLink
+        v-if="slug"
+        :to="localePath(`/${slug}`)"
+        target="_blank"
+        class="publish-preview-link"
+      >
+        {{ t('wizard.publish.previewLink') }}
+      </NuxtLink>
 
       <div
         v-if="status === 'SUSPENDED'"
@@ -282,6 +296,11 @@ async function unpublish() {
 .publish-status {
   @apply mt-6 text-sm;
   color: var(--color-text);
+}
+
+.publish-preview-link {
+  @apply mt-1 inline-block text-sm font-medium underline underline-offset-2;
+  color: var(--color-primary);
 }
 
 .publish-suspended {
