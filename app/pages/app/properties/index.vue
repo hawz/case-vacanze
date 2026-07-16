@@ -23,7 +23,7 @@ async function loadProperties() {
 
   const { data, error } = await supabase
     .from('properties')
-    .select('id, slug, name, status')
+    .select('id, slug, name, status, suspension_reason')
     .order('created_at', { ascending: false })
 
   isLoading.value = false
@@ -108,7 +108,7 @@ async function onSubmitCreate() {
         status: 'DRAFT',
         theme_id: 'default',
       })
-      .select('id, slug, name, status')
+      .select('id, slug, name, status, suspension_reason')
       .single()
 
     if (!error) {
