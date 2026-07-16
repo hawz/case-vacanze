@@ -80,7 +80,11 @@ export default defineNuxtConfig({
       // '/test-connection' e '/test-upload' (verifica Supabase/Cloudinary) sono
       // state rimosse insieme alle pagine: EPIC 4 ha sostituito il flusso di
       // test con quello reale (server/api/properties/[id]/photos.post.ts).
-      exclude: ['/', '/en', '/owners', '/en/owners', '/property/**', '/en/property/**'],
+      // '/property/**' era una rotta ipotizzata prima di costruire il mini-sito
+      // (EPIC 15): il mini-sito è finito su /[slug].vue (root, un solo
+      // segmento), non su /property/*, quindi il pattern non ha mai escluso
+      // nulla di reale — sostituito con '/*' per coprire la rotta vera.
+      exclude: ['/', '/en', '/owners', '/en/owners', '/*', '/en/*'],
       // Salva in un cookie la pagina che l'utente stava cercando di raggiungere
       // quando è stato rimbalzato al login, così login.vue può riportarcelo
       // dopo l'accesso invece di mandarlo sempre alla dashboard di default.
