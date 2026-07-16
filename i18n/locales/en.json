@@ -299,6 +299,13 @@
     "hideDetails": "Hide details",
     "save": "Save",
     "saved": "Saved.",
+    "overlapWarning": "Warning: the requested dates overlap with a period already blocked on the calendar.",
+    "overlapOk": "The requested dates are free on the calendar.",
+    "autoBlock": {
+      "created": "Period automatically blocked on the calendar.",
+      "skippedOverlap": "No block created: the dates already overlap with an existing period.",
+      "error": "Request accepted, but we couldn't automatically block the period. Please block it manually from the calendar."
+    },
     "errors": {
       "load": "We couldn't load the requests.",
       "save": "We couldn't save the status. Please try again."

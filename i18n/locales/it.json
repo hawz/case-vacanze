@@ -299,6 +299,13 @@
     "hideDetails": "Nascondi dettagli",
     "save": "Salva",
     "saved": "Salvato.",
+    "overlapWarning": "Attenzione: le date richieste si sovrappongono a un periodo già bloccato nel calendario.",
+    "overlapOk": "Le date richieste sono libere nel calendario.",
+    "autoBlock": {
+      "created": "Periodo bloccato automaticamente nel calendario.",
+      "skippedOverlap": "Nessun blocco creato: le date si sovrappongono già a un periodo esistente.",
+      "error": "Richiesta accettata, ma non è stato possibile bloccare automaticamente il periodo. Bloccalo manualmente dal calendario."
+    },
     "errors": {
       "load": "Non è stato possibile caricare le richieste.",
       "save": "Non è stato possibile salvare lo stato. Riprova."
