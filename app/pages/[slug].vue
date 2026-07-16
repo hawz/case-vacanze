@@ -132,16 +132,29 @@ const locationLine = computed(() => {
 </script>
 
 <template>
-  <div class="minisite" :style="themeVars">
-    <p v-if="isLoading" class="minisite__loading">
+  <div
+    class="minisite"
+    :style="themeVars"
+  >
+    <p
+      v-if="isLoading"
+      class="minisite__loading"
+    >
       {{ t('minisite.loading') }}
     </p>
 
-    <p v-else-if="loadError" class="minisite__alert" role="alert">
+    <p
+      v-else-if="loadError"
+      class="minisite__alert"
+      role="alert"
+    >
       {{ loadError }}
     </p>
 
-    <div v-else-if="notFound" class="minisite__not-found">
+    <div
+      v-else-if="notFound"
+      class="minisite__not-found"
+    >
       <h1 class="minisite__not-found-title">
         {{ t('minisite.notFound.title') }}
       </h1>
@@ -150,8 +163,14 @@ const locationLine = computed(() => {
       </p>
     </div>
 
-    <div v-else-if="property" class="minisite__content">
-      <p v-if="property.status !== 'PUBLISHED'" class="minisite__preview-banner">
+    <div
+      v-else-if="property"
+      class="minisite__content"
+    >
+      <p
+        v-if="property.status !== 'PUBLISHED'"
+        class="minisite__preview-banner"
+      >
         {{ t('minisite.previewBanner') }}
       </p>
 
@@ -161,7 +180,10 @@ const locationLine = computed(() => {
         <h1 class="minisite__name">
           {{ property.name }}
         </h1>
-        <p v-if="property.property_type || locationLine" class="minisite__subline">
+        <p
+          v-if="property.property_type || locationLine"
+          class="minisite__subline"
+        >
           <template v-if="property.property_type">
             {{ property.property_type }}
           </template>
@@ -174,31 +196,46 @@ const locationLine = computed(() => {
         </p>
       </header>
 
-      <div v-if="occupancy" class="minisite-stats">
+      <div
+        v-if="occupancy"
+        class="minisite-stats"
+      >
         <span class="minisite-stats__item">{{ occupancy.max_guests }} {{ t('minisite.occupancy.maxGuests') }}</span>
         <span class="minisite-stats__item">{{ occupancy.bedrooms }} {{ t('minisite.occupancy.bedrooms') }}</span>
         <span class="minisite-stats__item">{{ occupancy.bathrooms }} {{ t('minisite.occupancy.bathrooms') }}</span>
         <span class="minisite-stats__item">{{ occupancy.beds }} {{ t('minisite.occupancy.beds') }}</span>
       </div>
 
-      <p v-if="property.short_description" class="minisite__short-description">
+      <p
+        v-if="property.short_description"
+        class="minisite__short-description"
+      >
         {{ property.short_description }}
       </p>
-      <p v-if="property.long_description" class="minisite__long-description">
+      <p
+        v-if="property.long_description"
+        class="minisite__long-description"
+      >
         {{ property.long_description }}
       </p>
 
-      <div v-if="property.check_in_time || property.check_out_time" class="minisite-checktimes">
+      <div
+        v-if="property.check_in_time || property.check_out_time"
+        class="minisite-checktimes"
+      >
         <span v-if="property.check_in_time"><strong>{{ t('minisite.checkIn') }}:</strong> {{ property.check_in_time
-          }}</span>
+        }}</span>
         <span v-if="property.check_out_time"><strong>{{ t('minisite.checkOut') }}:</strong> {{ property.check_out_time
-          }}</span>
+        }}</span>
       </div>
 
       <MiniSiteAnnouncements :announcements="activeAnnouncements" />
       <MiniSiteOptionals :optionals="optionals" />
       <MiniSiteHouseRules :house-rules="houseRules" />
-      <MiniSiteAreaGuide :content="areaGuideContent" :pois="pois" />
+      <MiniSiteAreaGuide
+        :content="areaGuideContent"
+        :pois="pois"
+      />
       <MiniSiteCalendar :blocked-ranges="blockedRanges" />
       <MiniSiteOtaLinks :links="otaLinks" />
     </div>
