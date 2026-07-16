@@ -1,7 +1,8 @@
 <script setup lang="ts">
 // EPIC 15 — Mini-sito pubblico (US-1501/1502/1503/1504 + US-1102, anteprima
-// da PublishStep.vue). Pagina pubblica, fuori da /app, layout "default"
-// (nessun header autenticato). Nessuna RLS da aggiungere: tutte le tabelle
+// da PublishStep.vue; US-1601/EPIC 16, form di richiesta disponibilità, è
+// in MiniSiteAvailabilityForm.vue). Pagina pubblica, fuori da /app, layout
+// "default" (nessun header autenticato). Nessuna RLS da aggiungere: tutte le tabelle
 // coinvolte hanno già una policy "*_public_read" gated su
 // properties.status = 'PUBLISHED' (schema.sql), più "*_owner_read"/
 // "owns_property" per l'owner — vedi il commento sulla query della
@@ -287,6 +288,11 @@ useSeoMeta({
         :pois="pois"
       />
       <MiniSiteCalendar :blocked-ranges="blockedRanges" />
+      <MiniSiteAvailabilityForm
+        v-if="property.status === 'PUBLISHED'"
+        :property-id="property.id"
+        :max-guests="occupancy?.max_guests ?? null"
+      />
       <MiniSiteOtaLinks :links="otaLinks" />
     </div>
   </div>
