@@ -278,6 +278,12 @@ function statusModifier(status: string) {
           >
             {{ t('properties.actions.calendar') }}
           </NuxtLink>
+          <NuxtLink
+            :to="localePath(`/app/properties/${property.id}/announcements`)"
+            class="property-card__link"
+          >
+            {{ t('properties.actions.announcements') }}
+          </NuxtLink>
           <button
             type="button"
             class="property-card__delete"
