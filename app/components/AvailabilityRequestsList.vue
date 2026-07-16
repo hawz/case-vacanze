@@ -71,6 +71,10 @@ function formatDate(value: string) {
   return new Intl.DateTimeFormat(locale.value, { dateStyle: 'medium' }).format(new Date(value))
 }
 
+function formatDateAndTime(value: string) {
+  return new Intl.DateTimeFormat(locale.value, { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value))
+}
+
 const requests = ref<AvailabilityRequest[]>([])
 const isLoading = ref(true)
 const loadError = ref('')
@@ -91,7 +95,7 @@ async function loadRequests() {
     .from('availability_requests')
     .select('id, guest_name, email, phone, check_in, check_out, guests_count, message, status, created_at')
     .eq('property_id', props.propertyId)
-    .order('created_at', { ascending: false })
+    .order('created_at', { descending: true })
 
   isLoading.value = false
 
@@ -255,7 +259,7 @@ async function saveStatus(request: AvailabilityRequest) {
             <strong>{{ t('requests.fields.message') }}:</strong> {{ request.message }}
           </p>
           <p>
-            <strong>{{ t('requests.fields.receivedAt') }}:</strong> {{ formatDate(request.created_at) }}
+            <strong>{{ t('requests.fields.receivedAt') }}:</strong> {{ formatDateAndTime(request.created_at) }}
           </p>
 
           <p

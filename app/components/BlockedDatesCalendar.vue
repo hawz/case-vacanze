@@ -22,7 +22,7 @@ const { t, locale } = useI18n()
 const supabase = useSupabaseClient()
 
 const blockedDates = ref<BlockedDate[]>([])
-const sortedBlockedDates = computed(() => [...blockedDates.value].sort((a, b) => a.start_date.localeCompare(b.start_date)))
+const sortedBlockedDates = computed(() => [...blockedDates.value].sort((a, b) => b.start_date.localeCompare(a.start_date)))
 
 const isLoading = ref(true)
 const loadError = ref('')
