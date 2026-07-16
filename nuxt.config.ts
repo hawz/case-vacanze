@@ -83,8 +83,18 @@ export default defineNuxtConfig({
       // '/property/**' era una rotta ipotizzata prima di costruire il mini-sito
       // (EPIC 15): il mini-sito è finito su /[slug].vue (root, un solo
       // segmento), non su /property/*, quindi il pattern non ha mai escluso
-      // nulla di reale — sostituito con '/*' per coprire la rotta vera.
-      exclude: ['/', '/en', '/owners', '/en/owners', '/*', '/en/*'],
+      // nulla di reale.
+      // ATTENZIONE: questo modulo converte '*' in '.*' con una semplice
+      // string.replace su un singolo carattere, senza semantica da vero glob
+      // (vedi node_modules/@nuxtjs/supabase/dist/runtime/plugins/auth-redirect.js).
+      // Un pattern tipo '/*' diventerebbe quindi la regex '^/.*$', che
+      // combacia con QUALSIASI path — comprese le rotte /app/** che devono
+      // restare protette, disattivando di fatto l'intero redirect di login.
+      // '[^/]+' invece non contiene '*' e passa inalterato nella regex,
+      // matchando esattamente un singolo segmento senza ulteriori slash: è
+      // il modo per escludere solo /<slug> (e /en/<slug>) senza toccare
+      // /app/qualsiasi-cosa.
+      exclude: ['/', '/en', '/owners', '/en/owners', '/[^/]+', '/en/[^/]+'],
       // Salva in un cookie la pagina che l'utente stava cercando di raggiungere
       // quando è stato rimbalzato al login, così login.vue può riportarcelo
       // dopo l'accesso invece di mandarlo sempre alla dashboard di default.
