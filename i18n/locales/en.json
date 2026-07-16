@@ -1,7 +1,80 @@
 {
   "home": {
     "title": "Manage all your vacation homes in one place",
-    "subtitle": "Add your properties, upload photos, and connect them to AirBnB, Booking, and other platforms."
+    "subtitle": "Add your properties, upload photos, and connect them to AirBnB, Booking, and other platforms.",
+    "meta": {
+      "description": "Portale Case Vacanze is the platform for vacation home owners: create your mini-site, manage your calendar and requests, link Airbnb and Booking. You always stay in control."
+    },
+    "hero": {
+      "eyebrow": "Built for owners, not agencies",
+      "title": "Your vacation home. Your control.",
+      "subtitle": "Create your property's mini-site, manage the calendar and guest requests, link Airbnb and Booking — all from one place, with no middleman deciding for you.",
+      "ctaPrimary": "Get started free",
+      "ctaSecondary": "Sign in",
+      "imageAlt": "Photo of a vacation home published on the platform"
+    },
+    "valueProps": {
+      "title": "Not your typical property management tool",
+      "subtitle": "Most tools for vacation rentals are built for agencies and property managers, who run things on your behalf and keep control on their side. Here it's the other way around.",
+      "control": {
+        "title": "You keep control",
+        "description": "No middleman between you and your data: sign in, edit and decide everything yourself, whenever you want."
+      },
+      "ownSite": {
+        "title": "A mini-site that's yours",
+        "description": "Every property gets its own public page, with your style and your content — not buried inside someone else's platform."
+      },
+      "noLockIn": {
+        "title": "No lock-in",
+        "description": "You're free to stay on Airbnb, Booking and other platforms too: this is an extra channel, not a replacement."
+      }
+    },
+    "features": {
+      "title": "Everything you need to manage a vacation home",
+      "subtitle": "A tool built for the owner, from initial setup to day-to-day management.",
+      "wizard": {
+        "title": "Guided setup",
+        "description": "A step-by-step wizard walks you through every detail: information, spaces, rules, area guide."
+      },
+      "photos": {
+        "title": "Photo gallery",
+        "description": "Upload photos of your home, choose a cover, and show off your property at its best."
+      },
+      "calendar": {
+        "title": "Availability calendar",
+        "description": "Block unavailable periods and keep your real availability always up to date."
+      },
+      "requests": {
+        "title": "Direct requests",
+        "description": "Receive availability requests directly from guests, with no booking commissions."
+      },
+      "otaLinks": {
+        "title": "Platform links",
+        "description": "Add links to your listings on Airbnb, Booking and other platforms, all reachable from your mini-site."
+      },
+      "themes": {
+        "title": "Custom themes",
+        "description": "Choose from many visual themes to give your mini-site the style you want."
+      },
+      "announcements": {
+        "title": "Announcements",
+        "description": "Publish notices visible to guests for ongoing work, check-in changes and more."
+      },
+      "languages": {
+        "title": "Italian and English",
+        "description": "Interface available in two languages, for you and your international guests."
+      }
+    },
+    "showcase": {
+      "title": "Already live",
+      "subtitle": "Some of the vacation homes published on the platform.",
+      "viewLink": "Learn more"
+    },
+    "cta": {
+      "title": "Ready to put your vacation home online?",
+      "subtitle": "Sign up for free and start setting up your property in minutes.",
+      "button": "Sign up free"
+    }
   },
   "auth": {
     "fields": {

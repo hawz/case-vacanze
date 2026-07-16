@@ -1,7 +1,80 @@
 {
   "home": {
     "title": "Gestisci le tue case vacanza in un unico posto",
-    "subtitle": "Inserisci le proprietà, carica le foto e collegale ad AirBnB, Booking e agli altri portali."
+    "subtitle": "Inserisci le proprietà, carica le foto e collegale ad AirBnB, Booking e agli altri portali.",
+    "meta": {
+      "description": "Portale Case Vacanze è la piattaforma per proprietari di case vacanza: crea il tuo mini-sito, gestisci calendario e richieste, collega Airbnb e Booking. Il controllo resta sempre a te."
+    },
+    "hero": {
+      "eyebrow": "Fatto per chi possiede casa, non per le agenzie",
+      "title": "La tua casa vacanza. Il controllo resta tuo.",
+      "subtitle": "Crea il mini-sito della tua proprietà, gestisci calendario e richieste degli ospiti, collega Airbnb e Booking — tutto da un unico posto, senza intermediari che decidono al posto tuo.",
+      "ctaPrimary": "Inizia gratis",
+      "ctaSecondary": "Accedi",
+      "imageAlt": "Foto di una casa vacanza pubblicata sulla piattaforma"
+    },
+    "valueProps": {
+      "title": "Diverso dai soliti gestionali",
+      "subtitle": "La maggior parte degli strumenti per l'affitto turistico è pensata per agenzie e mandatari, che gestiscono per conto tuo e tengono il controllo dalla loro parte. Qui è il contrario.",
+      "control": {
+        "title": "Il controllo resta a te",
+        "description": "Nessun intermediario tra te e i tuoi dati: accedi, modifica e decidi tutto in autonomia, in ogni momento."
+      },
+      "ownSite": {
+        "title": "Un mini-sito solo tuo",
+        "description": "Ogni proprietà ha una pagina pubblica dedicata, con il tuo stile e i tuoi contenuti — non sepolta dentro il portale di qualcun altro."
+      },
+      "noLockIn": {
+        "title": "Nessun vincolo",
+        "description": "Resti libero di restare anche su Airbnb, Booking e gli altri portali: qui trovi un canale in più, non un sostituto."
+      }
+    },
+    "features": {
+      "title": "Tutto quello che serve per gestire una casa vacanza",
+      "subtitle": "Uno strumento pensato per il proprietario, dalla configurazione iniziale alla gestione quotidiana.",
+      "wizard": {
+        "title": "Configurazione guidata",
+        "description": "Un wizard passo passo ti accompagna nell'inserimento di ogni dettaglio: informazioni, spazi, regole, guida alla zona."
+      },
+      "photos": {
+        "title": "Galleria foto",
+        "description": "Carica le foto della casa, scegli la copertina e mostra il meglio della tua proprietà."
+      },
+      "calendar": {
+        "title": "Calendario disponibilità",
+        "description": "Blocca i periodi non disponibili e tieni sempre aggiornata la disponibilità reale."
+      },
+      "requests": {
+        "title": "Richieste dirette",
+        "description": "Ricevi richieste di disponibilità direttamente dagli ospiti, senza commissioni di intermediazione."
+      },
+      "otaLinks": {
+        "title": "Collegamento ai portali",
+        "description": "Aggiungi i link ai tuoi annunci su Airbnb, Booking e altri portali, tutti raggiungibili dal tuo mini-sito."
+      },
+      "themes": {
+        "title": "Temi personalizzabili",
+        "description": "Scegli tra tanti temi grafici per dare al tuo mini-sito lo stile che preferisci."
+      },
+      "announcements": {
+        "title": "Comunicazioni",
+        "description": "Pubblica avvisi visibili agli ospiti per lavori in corso, variazioni di check-in e altro."
+      },
+      "languages": {
+        "title": "Italiano e inglese",
+        "description": "Interfaccia disponibile in due lingue, per te e per i tuoi ospiti internazionali."
+      }
+    },
+    "showcase": {
+      "title": "Già online",
+      "subtitle": "Alcune delle case vacanza pubblicate sulla piattaforma.",
+      "viewLink": "Scopri di più"
+    },
+    "cta": {
+      "title": "Pronto a mettere online la tua casa vacanza?",
+      "subtitle": "Registrati gratuitamente e inizia a configurare la tua proprietà in pochi minuti.",
+      "button": "Registrati gratis"
+    }
   },
   "auth": {
     "fields": {
