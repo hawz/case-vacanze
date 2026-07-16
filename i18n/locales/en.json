@@ -66,7 +66,8 @@
   },
   "nav": {
     "profile": "Profile",
-    "logout": "Sign out"
+    "logout": "Sign out",
+    "admin": "Administration"
   },
   "properties": {
     "title": "Your properties",
@@ -88,6 +89,7 @@
       "published": "Published",
       "suspended": "Suspended"
     },
+    "suspensionReasonLabel": "Suspension reason",
     "actions": {
       "edit": "Open",
       "calendar": "Calendar",
@@ -319,6 +321,63 @@
     },
     "errors": {
       "load": "We couldn't load the page."
+    }
+  },
+  "admin": {
+    "properties": {
+      "title": "Administration — All properties",
+      "subtitle": "Cross-account view of every property on the platform, regardless of owner.",
+      "backToDashboard": "Back to my dashboard",
+      "usersLink": "Users",
+      "loading": "Loading...",
+      "empty": "No properties found.",
+      "ownerLabel": "Owner",
+      "unknownOwner": "Unnamed owner",
+      "suspend": {
+        "button": "Suspend",
+        "reasonLabel": "Suspension reason",
+        "reasonPlaceholder": "e.g. Inappropriate content, guest report...",
+        "confirm": "Confirm suspension",
+        "cancel": "Cancel",
+        "reasonRequired": "The reason is required."
+      },
+      "reactivate": {
+        "toPublished": "Reactivate as published",
+        "toDraft": "Revert to draft"
+      },
+      "suspensionReasonLabel": "Suspension reason",
+      "errors": {
+        "load": "We couldn't load the properties.",
+        "suspend": "We couldn't suspend the property. Please try again.",
+        "reactivate": "We couldn't reactivate the property. Please try again."
+      }
+    },
+    "users": {
+      "title": "Administration — Users",
+      "subtitle": "List of all users registered on the platform.",
+      "propertiesLink": "Properties",
+      "loading": "Loading...",
+      "empty": "No users found.",
+      "unnamed": "Unnamed user",
+      "idLabel": "ID",
+      "phoneLabel": "Phone",
+      "roleLabel": "Role",
+      "roles": {
+        "OWNER": "Owner",
+        "ADMIN": "Admin"
+      },
+      "promote": {
+        "button": "Promote to Admin",
+        "confirmTitle": "Promote this user to Admin?",
+        "confirmMessage": "They will get access to every property on the platform and will be able to promote other users in turn.",
+        "confirm": "Confirm promotion",
+        "cancel": "Cancel"
+      },
+      "promoted": "User promoted to Admin.",
+      "errors": {
+        "load": "We couldn't load the users.",
+        "promote": "We couldn't promote the user. Please try again."
+      }
     }
   },
   "wizard": {

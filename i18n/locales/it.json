@@ -66,7 +66,8 @@
   },
   "nav": {
     "profile": "Profilo",
-    "logout": "Esci"
+    "logout": "Esci",
+    "admin": "Amministrazione"
   },
   "properties": {
     "title": "Le tue proprietà",
@@ -88,6 +89,7 @@
       "published": "Pubblicata",
       "suspended": "Sospesa"
     },
+    "suspensionReasonLabel": "Motivo della sospensione",
     "actions": {
       "edit": "Apri",
       "calendar": "Calendario",
@@ -319,6 +321,63 @@
     },
     "errors": {
       "load": "Non è stato possibile caricare la pagina."
+    }
+  },
+  "admin": {
+    "properties": {
+      "title": "Amministrazione — Tutte le proprietà",
+      "subtitle": "Vista trasversale su tutte le proprietà della piattaforma, indipendentemente dal proprietario.",
+      "backToDashboard": "Torna alla mia dashboard",
+      "usersLink": "Utenti",
+      "loading": "Caricamento...",
+      "empty": "Nessuna proprietà presente.",
+      "ownerLabel": "Proprietario",
+      "unknownOwner": "Proprietario senza nome",
+      "suspend": {
+        "button": "Sospendi",
+        "reasonLabel": "Motivo della sospensione",
+        "reasonPlaceholder": "es. Contenuti inappropriati, segnalazione ospite...",
+        "confirm": "Conferma sospensione",
+        "cancel": "Annulla",
+        "reasonRequired": "Il motivo è obbligatorio."
+      },
+      "reactivate": {
+        "toPublished": "Riattiva come pubblicata",
+        "toDraft": "Riporta a bozza"
+      },
+      "suspensionReasonLabel": "Motivo sospensione",
+      "errors": {
+        "load": "Non è stato possibile caricare le proprietà.",
+        "suspend": "Non è stato possibile sospendere la proprietà. Riprova.",
+        "reactivate": "Non è stato possibile riattivare la proprietà. Riprova."
+      }
+    },
+    "users": {
+      "title": "Amministrazione — Utenti",
+      "subtitle": "Elenco di tutti gli utenti registrati sulla piattaforma.",
+      "propertiesLink": "Proprietà",
+      "loading": "Caricamento...",
+      "empty": "Nessun utente presente.",
+      "unnamed": "Utente senza nome",
+      "idLabel": "ID",
+      "phoneLabel": "Telefono",
+      "roleLabel": "Ruolo",
+      "roles": {
+        "OWNER": "Proprietario",
+        "ADMIN": "Admin"
+      },
+      "promote": {
+        "button": "Promuovi ad Admin",
+        "confirmTitle": "Promuovere questo utente ad Admin?",
+        "confirmMessage": "Avrà accesso a tutte le proprietà della piattaforma e potrà a sua volta promuovere altri utenti.",
+        "confirm": "Conferma promozione",
+        "cancel": "Annulla"
+      },
+      "promoted": "Utente promosso ad Admin.",
+      "errors": {
+        "load": "Non è stato possibile caricare gli utenti.",
+        "promote": "Non è stato possibile promuovere l'utente. Riprova."
+      }
     }
   },
   "wizard": {
