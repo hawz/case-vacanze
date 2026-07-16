@@ -288,6 +288,35 @@
     "loading": "Loading...",
     "previewBanner": "Preview — this property isn't published yet and isn't visible to guests.",
     "metaFallbackDescription": "Discover this vacation home on Portale Case Vacanze.",
+    "availabilityForm": {
+      "title": "Request availability",
+      "subtitle": "Fill in the form to ask the owner whether the property is free on the dates you're interested in.",
+      "fields": {
+        "guestNameLabel": "Full name",
+        "emailLabel": "Email",
+        "phoneLabel": "Phone (optional)",
+        "checkInLabel": "Check-in",
+        "checkOutLabel": "Check-out",
+        "guestsCountLabel": "Number of guests",
+        "messageLabel": "Message (optional)"
+      },
+      "guestsExceedWarning": "The number of guests exceeds the stated maximum capacity ({max}).",
+      "submit": "Send request",
+      "submitted": {
+        "title": "Request sent",
+        "message": "Thank you! The owner will receive your request and will contact you directly using the details you provided."
+      },
+      "validation": {
+        "guestNameRequired": "Enter your name.",
+        "emailInvalid": "Enter a valid email address.",
+        "datesRequired": "Enter both dates.",
+        "checkOutBeforeCheckIn": "The check-out date must be after check-in.",
+        "guestsCountInvalid": "Enter a valid number of guests."
+      },
+      "errors": {
+        "submit": "We couldn't send the request. Please try again."
+      }
+    },
     "errors": {
       "load": "We couldn't load the page."
     }

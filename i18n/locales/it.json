@@ -288,6 +288,35 @@
     "loading": "Caricamento...",
     "previewBanner": "Anteprima — questa proprietà non è ancora pubblicata e non è visibile agli ospiti.",
     "metaFallbackDescription": "Scopri questa casa vacanza su Portale Case Vacanze.",
+    "availabilityForm": {
+      "title": "Richiedi disponibilità",
+      "subtitle": "Compila il modulo per chiedere al proprietario se la casa è libera nelle date che ti interessano.",
+      "fields": {
+        "guestNameLabel": "Nome e cognome",
+        "emailLabel": "Email",
+        "phoneLabel": "Telefono (facoltativo)",
+        "checkInLabel": "Check-in",
+        "checkOutLabel": "Check-out",
+        "guestsCountLabel": "Numero di ospiti",
+        "messageLabel": "Messaggio (facoltativo)"
+      },
+      "guestsExceedWarning": "Il numero di ospiti supera la capienza massima indicata ({max}).",
+      "submit": "Invia richiesta",
+      "submitted": {
+        "title": "Richiesta inviata",
+        "message": "Grazie! Il proprietario riceverà la tua richiesta e ti contatterà direttamente ai recapiti forniti."
+      },
+      "validation": {
+        "guestNameRequired": "Inserisci il tuo nome.",
+        "emailInvalid": "Inserisci un indirizzo email valido.",
+        "datesRequired": "Inserisci entrambe le date.",
+        "checkOutBeforeCheckIn": "La data di check-out deve essere successiva al check-in.",
+        "guestsCountInvalid": "Inserisci un numero di ospiti valido."
+      },
+      "errors": {
+        "submit": "Non è stato possibile inviare la richiesta. Riprova."
+      }
+    },
     "errors": {
       "load": "Non è stato possibile caricare la pagina."
     }
