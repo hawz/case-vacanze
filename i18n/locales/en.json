@@ -91,6 +91,7 @@
     "actions": {
       "edit": "Open",
       "calendar": "Calendar",
+      "announcements": "Announcements",
       "delete": "Delete"
     },
     "deleteConfirm": {
@@ -143,6 +144,56 @@
       "add": "We couldn't block the period. Please try again.",
       "save": "We couldn't save the changes. Please try again.",
       "delete": "We couldn't delete the block. Please try again."
+    }
+  },
+  "announcements": {
+    "title": "Announcements",
+    "subtitle": "Publish announcements visible to guests on the mini-site.",
+    "backLink": "Back to the list",
+    "loading": "Loading...",
+    "types": {
+      "INFO": "Info",
+      "WARNING": "Warning",
+      "URGENT": "Urgent"
+    },
+    "add": {
+      "title": "New announcement",
+      "titleLabel": "Title",
+      "bodyLabel": "Body",
+      "typeLabel": "Urgency level",
+      "visibleFromLabel": "Visible from (optional)",
+      "visibleToLabel": "Visible until (optional)",
+      "button": "Publish"
+    },
+    "list": {
+      "title": "Published announcements",
+      "empty": "You haven't published any announcement yet."
+    },
+    "fields": {
+      "titleLabel": "Title",
+      "bodyLabel": "Body",
+      "typeLabel": "Urgency level",
+      "visibleFromLabel": "Visible from",
+      "visibleToLabel": "Visible until"
+    },
+    "save": "Save",
+    "saved": "Saved.",
+    "delete": "Delete",
+    "deleteConfirm": {
+      "title": "Delete this announcement?",
+      "confirm": "Delete permanently",
+      "cancel": "Cancel"
+    },
+    "validation": {
+      "titleRequired": "Enter a title.",
+      "bodyRequired": "Enter the announcement text.",
+      "visibleToBeforeFrom": "\"Visible until\" must be on or after \"Visible from\"."
+    },
+    "errors": {
+      "load": "We couldn't load the announcements.",
+      "add": "We couldn't publish the announcement. Please try again.",
+      "save": "We couldn't save the changes. Please try again.",
+      "delete": "We couldn't delete the announcement. Please try again."
     }
   },
   "wizard": {

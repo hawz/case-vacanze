@@ -91,6 +91,7 @@
     "actions": {
       "edit": "Apri",
       "calendar": "Calendario",
+      "announcements": "Comunicazioni",
       "delete": "Elimina"
     },
     "deleteConfirm": {
@@ -143,6 +144,56 @@
       "add": "Non è stato possibile bloccare il periodo. Riprova.",
       "save": "Non è stato possibile salvare le modifiche. Riprova.",
       "delete": "Non è stato possibile eliminare il blocco. Riprova."
+    }
+  },
+  "announcements": {
+    "title": "Comunicazioni",
+    "subtitle": "Pubblica annunci visibili agli ospiti sul mini-sito.",
+    "backLink": "Torna all'elenco",
+    "loading": "Caricamento...",
+    "types": {
+      "INFO": "Info",
+      "WARNING": "Attenzione",
+      "URGENT": "Urgente"
+    },
+    "add": {
+      "title": "Nuovo annuncio",
+      "titleLabel": "Titolo",
+      "bodyLabel": "Testo",
+      "typeLabel": "Livello di urgenza",
+      "visibleFromLabel": "Visibile da (facoltativo)",
+      "visibleToLabel": "Visibile fino a (facoltativo)",
+      "button": "Pubblica"
+    },
+    "list": {
+      "title": "Annunci pubblicati",
+      "empty": "Non hai ancora pubblicato nessun annuncio."
+    },
+    "fields": {
+      "titleLabel": "Titolo",
+      "bodyLabel": "Testo",
+      "typeLabel": "Livello di urgenza",
+      "visibleFromLabel": "Visibile da",
+      "visibleToLabel": "Visibile fino a"
+    },
+    "save": "Salva",
+    "saved": "Salvato.",
+    "delete": "Elimina",
+    "deleteConfirm": {
+      "title": "Eliminare questo annuncio?",
+      "confirm": "Elimina definitivamente",
+      "cancel": "Annulla"
+    },
+    "validation": {
+      "titleRequired": "Inserisci un titolo.",
+      "bodyRequired": "Inserisci il testo dell'annuncio.",
+      "visibleToBeforeFrom": "\"Visibile fino a\" deve essere uguale o successivo a \"Visibile da\"."
+    },
+    "errors": {
+      "load": "Non è stato possibile caricare gli annunci.",
+      "add": "Non è stato possibile pubblicare l'annuncio. Riprova.",
+      "save": "Non è stato possibile salvare le modifiche. Riprova.",
+      "delete": "Non è stato possibile eliminare l'annuncio. Riprova."
     }
   },
   "wizard": {
