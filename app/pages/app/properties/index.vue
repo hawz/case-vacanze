@@ -287,6 +287,13 @@ function statusModifier(status: string) {
           </span>
         </div>
 
+        <p
+          v-if="property.status === 'SUSPENDED' && property.suspension_reason"
+          class="property-card__suspension-reason"
+        >
+          <strong>{{ t('properties.suspensionReasonLabel') }}:</strong> {{ property.suspension_reason }}
+        </p>
+
         <div class="property-card__actions">
           <NuxtLink
             :to="localePath(`/app/properties/${property.id}/edit`)"
@@ -483,6 +490,12 @@ function statusModifier(status: string) {
 .property-card__status--suspended {
   background-color: #fee2e2;
   color: #b91c1c;
+}
+
+.property-card__suspension-reason {
+  @apply mt-2 rounded-md px-3 py-2 text-sm;
+  background-color: #fef2f2;
+  color: #7f1d1d;
 }
 
 .property-card__actions {
