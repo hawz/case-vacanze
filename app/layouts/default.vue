@@ -2,6 +2,7 @@
   <div class="app-shell">
     <header class="app-shell__header">
       <span class="app-shell__logo">Portale Case Vacanze</span>
+      <LanguageSwitcher />
     </header>
 
     <main class="app-shell__content">
@@ -27,7 +28,7 @@
 }
 
 .app-shell__header {
-  @apply flex items-center px-4 py-3 shadow-sm;
+  @apply flex items-center justify-between px-4 py-3 shadow-sm;
   background-color: var(--color-surface, #ffffff);
 }
 

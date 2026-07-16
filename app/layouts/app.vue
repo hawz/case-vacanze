@@ -37,6 +37,7 @@ async function onLogout() {
       </NuxtLink>
 
       <div class="app-shell__user">
+        <LanguageSwitcher />
         <NuxtLink
           v-if="authStore.isAdmin"
           :to="localePath('/app/admin/properties')"
