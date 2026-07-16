@@ -94,7 +94,39 @@ export default defineNuxtConfig({
       // matchando esattamente un singolo segmento senza ulteriori slash: è
       // il modo per escludere solo /<slug> (e /en/<slug>) senza toccare
       // /app/qualsiasi-cosa.
-      exclude: ['/', '/en', '/owners', '/en/owners', '/[^/]+', '/en/[^/]+'],
+      //
+      // Bug preesistente (mai presente in nessun commit, non introdotto di
+      // recente): /app/register e /app/forgot-password non sono mai stati in
+      // questo elenco. "login"/"callback" sono gli unici due esclusi in modo
+      // implicito dal modulo stesso — tutte le altre pagine di autenticazione
+      // vanno elencate esplicitamente, altrimenti un visitatore senza
+      // sessione che le apre viene rimbalzato su /app/login prima ancora di
+      // poter compilare il form.
+      //
+      // Stesso bug, variante scoperta col language switcher (US-1801): il
+      // modulo esclude automaticamente "login"/"callback" (righe sopra), ma
+      // SOLO nella forma esatta configurata — /app/login, non /en/app/login.
+      // Passando a inglese sulla pagina di login, /en/app/login non risultava
+      // escluso, quindi senza sessione veniva rimbalzato su navigateTo(login)
+      // = '/app/login' (letterale, senza prefisso /en/): l'utente tornava
+      // alla pagina di login ma in italiano, sembrando che il cambio lingua
+      // non avesse effetto. Va quindi elencata a mano anche la variante /en/
+      // di ogni pagina che il modulo esclude "per nome" invece che tramite
+      // questo array.
+      exclude: [
+        '/',
+        '/en',
+        '/owners',
+        '/en/owners',
+        '/[^/]+',
+        '/en/[^/]+',
+        '/app/register',
+        '/en/app/register',
+        '/app/forgot-password',
+        '/en/app/forgot-password',
+        '/en/app/login',
+        '/en/app/confirm',
+      ],
       // Salva in un cookie la pagina che l'utente stava cercando di raggiungere
       // quando è stato rimbalzato al login, così login.vue può riportarcelo
       // dopo l'accesso invece di mandarlo sempre alla dashboard di default.
