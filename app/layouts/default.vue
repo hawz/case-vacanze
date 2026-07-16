@@ -2,7 +2,10 @@
   <div class="app-shell">
     <header class="app-shell__header">
       <!-- <span class="app-shell__logo">Portale Case Vacanze</span> -->
-      <NuxtLink :to="localePath('/')" class="app-shell__logo">Portale Case Vacanze</NuxtLink>
+      <NuxtLink
+        :to="localePath('/')"
+        class="app-shell__logo"
+      >Portale Case Vacanze</NuxtLink>
       <LanguageSwitcher />
     </header>
 

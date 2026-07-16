@@ -21,6 +21,7 @@ interface ShowcaseProperty {
 
 const { t } = useI18n()
 const supabase = useSupabaseClient()
+const requestUrl = useRequestURL()
 
 const { data: showcaseProperties } = await useAsyncData<ShowcaseProperty[]>('home-showcase', async () => {
   const { data } = await supabase
@@ -47,18 +48,28 @@ const { data: showcaseProperties } = await useAsyncData<ShowcaseProperty[]>('hom
 const properties = computed(() => showcaseProperties.value ?? [])
 const heroPhotos = computed(() => properties.value.map(p => p.coverUrl).filter((url): url is string => !!url).slice(0, 3))
 
+// US-2003: immagine dedicata per l'anteprima di condivisione, invece della
+// copertina di una proprietà pubblicata a caso (US-2002 iniziale) — la home
+// rappresenta la piattaforma, non una singola casa, e non deve dipendere da
+// quali proprietà sono pubblicate in un dato momento. Asset statico in
+// public/images/, nessuna generazione lato server.
+const ogImageUrl = computed(() => `${requestUrl.origin}/images/og-home.png`)
+
 useSeoMeta({
   title: () => t('home.title'),
   description: () => t('home.meta.description'),
   ogTitle: () => t('home.title'),
   ogDescription: () => t('home.meta.description'),
-  ogImage: () => heroPhotos.value[0],
+  ogImage: () => ogImageUrl.value,
+  ogImageWidth: 1200,
+  ogImageHeight: 630,
+  ogUrl: () => requestUrl.origin,
   ogType: 'website',
   ogSiteName: 'Portale Case Vacanze',
   twitterCard: 'summary_large_image',
   twitterTitle: () => t('home.title'),
   twitterDescription: () => t('home.meta.description'),
-  twitterImage: () => heroPhotos.value[0],
+  twitterImage: () => ogImageUrl.value,
 })
 </script>
 
