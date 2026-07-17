@@ -28,6 +28,8 @@ interface PropertyDetail {
   address_line: string | null
   city: string | null
   province: string | null
+  latitude: number | null
+  longitude: number | null
   short_description: string | null
   long_description: string | null
   theme_id: string
@@ -67,7 +69,7 @@ async function fetchMiniSite(): Promise<MiniSiteData | null> {
   // identica risposta di uno slug inesistente, nessuna fuga di informazioni.
   const { data: propertyData, error: propertyError } = await supabase
     .from('properties')
-    .select('id, name, property_type, address_line, city, province, short_description, long_description, theme_id, check_in_time, check_out_time, status')
+    .select('id, name, property_type, address_line, city, province, latitude, longitude, short_description, long_description, theme_id, check_in_time, check_out_time, status')
     .eq('slug', slug.value)
     .maybeSingle()
 
@@ -146,6 +148,14 @@ const themeVars = computed(() => ({
 const locationLine = computed(() => {
   if (!property.value) return ''
   return [property.value.address_line, property.value.city, property.value.province].filter(Boolean).join(', ')
+})
+
+// US-2007: mappa mostrata solo se il proprietario ha impostato lat/lng
+// (US-2006) — a differenza del wizard, qui non c'è nessun fallback "Sardegna"
+// perché un visitatore non saprebbe cosa significhi una posizione non reale.
+const mapCoordinates = computed(() => {
+  if (property.value?.latitude == null || property.value?.longitude == null) return null
+  return { latitude: property.value.latitude, longitude: property.value.longitude }
 })
 
 // --- US-1504: tag SEO e anteprima di condivisione social ---
@@ -256,6 +266,19 @@ useSeoMeta({
         <span class="minisite-stats__item">{{ occupancy.bathrooms }} {{ t('minisite.occupancy.bathrooms') }}</span>
         <span class="minisite-stats__item">{{ occupancy.beds }} {{ t('minisite.occupancy.beds') }}</span>
       </div>
+
+      <section
+        v-if="mapCoordinates"
+        class="minisite-section"
+      >
+        <h2 class="minisite-section__title">
+          {{ t('minisite.location.title') }}
+        </h2>
+        <MiniSiteLocationMap
+          :latitude="mapCoordinates.latitude"
+          :longitude="mapCoordinates.longitude"
+        />
+      </section>
 
       <p
         v-if="property.short_description"
@@ -368,6 +391,22 @@ useSeoMeta({
 
 .minisite-checktimes {
   @apply mt-4 flex flex-wrap gap-4 text-sm;
+  color: var(--color-text);
+}
+
+/*
+  Stessa coppia di classi usata dai componenti MiniSite* (es.
+  MiniSiteAreaGuide.vue) per i titoli di sezione: duplicata qui perché gli
+  stili scoped di Vue non si condividono tra file, la mappa (US-2007) è
+  l'unica sezione renderizzata direttamente nel template di questa pagina
+  invece che in un componente dedicato.
+*/
+.minisite-section {
+  @apply mt-8;
+}
+
+.minisite-section__title {
+  @apply text-lg font-semibold;
   color: var(--color-text);
 }
 </style>
