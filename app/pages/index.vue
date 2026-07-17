@@ -7,7 +7,7 @@
 //
 // Vetrina proprietà: solo dati reali già pubblicati sulla piattaforma
 // (nessuna foto stock esterna). Con una sola proprietà pubblicata oggi, la
-// sezione resta comunque intenzionale (vedi HomeShowcase.vue) e si nasconde
+// sezione resta comunque intenzionale (vedi home/Showcase.vue) e si nasconde
 // del tutto se non c'è nessuna proprietà pubblicata, invece di mostrare una
 // vetrina vuota.
 interface ShowcaseProperty {

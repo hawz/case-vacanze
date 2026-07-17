@@ -1,7 +1,7 @@
 <script setup lang="ts">
 // EPIC 15 — Mini-sito pubblico (US-1501/1502/1503/1504 + US-1102, anteprima
 // da PublishStep.vue; US-1601/EPIC 16, form di richiesta disponibilità, è
-// in MiniSiteAvailabilityForm.vue). Pagina pubblica, fuori da /app, layout
+// in mini-site/AvailabilityForm.vue). Pagina pubblica, fuori da /app, layout
 // "default" (nessun header autenticato). Nessuna RLS da aggiungere: tutte le tabelle
 // coinvolte hanno già una policy "*_public_read" gated su
 // properties.status = 'PUBLISHED' (schema.sql), più "*_owner_read"/
@@ -396,7 +396,7 @@ useSeoMeta({
 
 /*
   Stessa coppia di classi usata dai componenti MiniSite* (es.
-  MiniSiteAreaGuide.vue) per i titoli di sezione: duplicata qui perché gli
+  mini-site/AreaGuide.vue) per i titoli di sezione: duplicata qui perché gli
   stili scoped di Vue non si condividono tra file, la mappa (US-2007) è
   l'unica sezione renderizzata direttamente nel template di questa pagina
   invece che in un componente dedicato.
