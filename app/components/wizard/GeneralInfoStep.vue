@@ -53,6 +53,37 @@ const formError = ref('')
 const isSaving = ref(false)
 const isSaved = ref(false)
 
+// US-2006: geocoding automatico di indirizzo/città/provincia verso lat/lng,
+// solo finché l'utente non ha già una posizione (salvata, digitata a mano o
+// impostata sulla mappa) — non vogliamo sovrascrivere in silenzio un pin già
+// posizionato solo perché un campo indirizzo ha perso il focus.
+let lastGeocodedQuery = ''
+
+async function geocodeFromAddress() {
+  if (latitude.value.trim() || longitude.value.trim()) return
+
+  const query = [addressLine.value, city.value, province.value].map(s => s.trim()).filter(Boolean).join(', ')
+  if (!query) return
+
+  const fullQuery = `${query}, Italia`
+  if (fullQuery === lastGeocodedQuery) return
+  lastGeocodedQuery = fullQuery
+
+  try {
+    const results = await $fetch<Array<{ lat: string, lon: string }>>('https://nominatim.openstreetmap.org/search', {
+      query: { format: 'json', limit: 1, q: fullQuery },
+    })
+    if (results.length) {
+      latitude.value = Number(results[0].lat).toFixed(6)
+      longitude.value = Number(results[0].lon).toFixed(6)
+    }
+  }
+  catch {
+    // Nominatim non raggiungibile o nessun risultato: l'utente può comunque
+    // posizionare il segnaposto a mano sulla mappa (fallback vista Sardegna).
+  }
+}
+
 async function loadProperty() {
   const { data, error } = await supabase
     .from('properties')
@@ -93,6 +124,8 @@ async function loadProperty() {
       propertyTypeOther.value = storedType
     }
   }
+
+  geocodeFromAddress()
 }
 
 onMounted(loadProperty)
@@ -285,6 +318,7 @@ async function onSubmit() {
           v-model="addressLine"
           type="text"
           class="wizard-form__input"
+          @blur="geocodeFromAddress"
         >
       </div>
       <div class="wizard-form__field">
@@ -297,6 +331,7 @@ async function onSubmit() {
           v-model="city"
           type="text"
           class="wizard-form__input"
+          @blur="geocodeFromAddress"
         >
       </div>
       <div class="wizard-form__field">
@@ -309,6 +344,7 @@ async function onSubmit() {
           v-model="province"
           type="text"
           class="wizard-form__input"
+          @blur="geocodeFromAddress"
         >
       </div>
     </div>
@@ -354,6 +390,17 @@ async function onSubmit() {
           {{ fieldErrors.longitude }}
         </p>
       </div>
+    </div>
+
+    <div class="wizard-form__field">
+      <label class="wizard-form__label">{{ t('wizard.generalInfo.fields.mapLabel') }}</label>
+      <p class="wizard-form__hint">
+        {{ t('wizard.generalInfo.fields.mapHint') }}
+      </p>
+      <WizardLocationMapField
+        v-model:latitude="latitude"
+        v-model:longitude="longitude"
+      />
     </div>
 
     <div class="wizard-form__field">
