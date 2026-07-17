@@ -328,6 +328,9 @@
       "bathrooms": "Bagni",
       "beds": "Letti"
     },
+    "location": {
+      "title": "Dove si trova"
+    },
     "checkIn": "Check-in",
     "checkOut": "Check-out",
     "optionals": {
@@ -497,6 +500,8 @@
         "provinceLabel": "Provincia",
         "latitudeLabel": "Latitudine",
         "longitudeLabel": "Longitudine",
+        "mapLabel": "Posizione sulla mappa",
+        "mapHint": "Clicca sulla mappa o trascina il segnaposto per indicare la posizione esatta della proprietà.",
         "shortDescriptionLabel": "Descrizione breve",
         "longDescriptionLabel": "Descrizione estesa",
         "checkInLabel": "Orario check-in",
