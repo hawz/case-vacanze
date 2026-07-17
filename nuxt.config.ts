@@ -38,6 +38,17 @@ export default defineNuxtConfig({
   },
   compatibilityDate: '2026-07-01',
 
+  vite: {
+    optimizeDeps: {
+      include: [
+        '@vue/devtools-core',
+        '@vue/devtools-kit',
+        'leaflet', // CJS
+        'zod',
+      ],
+    },
+  },
+
   typescript: {
     strict: true,
   },
