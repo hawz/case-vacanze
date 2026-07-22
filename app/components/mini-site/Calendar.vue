@@ -160,7 +160,7 @@ function nextMonth() {
 }
 
 .minisite-calendar {
-  @apply mt-3 max-w-sm border p-4;
+  @apply mt-3 max-w-full border p-4;
   border-color: var(--color-border, #e5e7eb);
   background-color: var(--color-surface);
   border-radius: var(--radius-base, 8px);
