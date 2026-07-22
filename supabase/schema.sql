@@ -47,7 +47,15 @@ create table public.properties (
   long_description text,
   status property_status not null default 'DRAFT',
   suspension_reason text,
-  theme_id text not null default 'default',
+  -- Default cambiato da 'default' a 'meridiana' il 2026-07-21 (EPIC 21/
+  -- US-2103, revamp temi: 'default' non esiste più in config/themes.ts).
+  -- Su un DB già esistente esegui separatamente
+  -- `alter table public.properties alter column theme_id set default 'meridiana';`
+  -- — questo file CREATE TABLE non viene ri-eseguito su un DB esistente.
+  -- Le proprietà che avevano già un vecchio theme_id (default/sunset/...)
+  -- non hanno bisogno di nessuna migrazione: getTheme() in config/themes.ts
+  -- ricade già da solo sul primo tema se l'id salvato non esiste più.
+  theme_id text not null default 'meridiana',
   check_in_time text,
   check_out_time text,
   created_at timestamptz not null default now(),
