@@ -1,199 +1,154 @@
 /**
  * Definizione dei temi disponibili per i mini-siti delle proprietà.
- * Ogni proprietà, in futuro, potrà selezionare un tema da questo elenco:
- * i valori vengono applicati come variabili CSS custom properties
- * (vedi app/assets/css/main.css per i default) tramite uno style
- * scope o una classe sul contenitore del mini-sito.
+ * Ogni proprietà seleziona un tema da questo elenco (ThemeStep.vue nel
+ * wizard): i valori vengono applicati come variabili CSS custom properties
+ * sul contenitore radice del mini-sito (vedi themeVars in app/pages/[slug].vue),
+ * mai sui token globali di app/assets/css/main.css — quelli restano lo stile
+ * fisso del resto del sito (dashboard, wizard, home page), indipendente dal
+ * tema scelto per una singola proprietà.
+ *
+ * EPIC 21/US-2103: revamp deciso con Albe dopo un mockup di approvazione
+ * (docs/epic-21-mockup.html) — i 13 temi precedenti (EPIC 10/US-1003)
+ * differivano solo per `primary`/`accent` su uno stesso sfondo quasi bianco
+ * e uno stesso font: risultavano "tutti uguali". Sostituiti con un set più
+ * piccolo (4) ma ognuno realmente distinto per colore, font E forma degli
+ * angoli — non solo tinta. Le proprietà con un `theme_id` non più presente
+ * in questo elenco (i vecchi 'default'/'sunset'/... prima del revamp)
+ * ricadono automaticamente sul primo tema tramite il fallback già presente
+ * in getTheme(), senza errori — cambiano solo aspetto senza che il
+ * proprietario l'abbia scelto: accettato consapevolmente con Albe.
  */
 export interface Theme {
   id: string
   label: string
+  /** Riga descrittiva breve, mostrata nella card di scelta nel wizard. */
+  description: string
   colors: {
     primary: string
     primaryDark: string
     accent: string
+    /** Colore testo/icona sopra un elemento con sfondo `primary` (bottoni, badge). */
+    onPrimary: string
     surface: string
     background: string
     text: string
     muted: string
+    border: string
+  }
+  fonts: {
+    /** Font dei titoli (nome proprietà, titoli di sezione). */
+    display: string
+    /** Font del corpo testo — sovrascrive --font-family-base solo dentro il mini-sito. */
+    body: string
+    displayWeight: number
+  }
+  radius: {
+    /** Angoli di card, foto, contenitori. */
+    base: string
+    /** Angoli di chip/badge/bottoni "a pillola". */
+    pill: string
   }
 }
 
 export const themes: Theme[] = [
   {
-    id: 'default',
-    label: 'Default (Teal)',
+    id: 'meridiana',
+    label: 'Meridiana',
+    description: 'Luce del giorno, teal e ambra — evoluzione del tema di partenza',
     colors: {
-      primary: '#0f766e',
-      primaryDark: '#115e59',
-      accent: '#f59e0b',
-      surface: '#ffffff',
-      background: '#f9fafb',
-      text: '#111827',
-      muted: '#6b7280',
+      primary: '#0b6e63',
+      primaryDark: '#084f47',
+      accent: '#c08a1e',
+      onPrimary: '#fff8ec',
+      surface: '#fbf6ea',
+      background: '#f4ecdb',
+      text: '#322c1c',
+      muted: '#746952',
+      border: '#e7dcc2',
+    },
+    fonts: {
+      display: 'Georgia, "Iowan Old Style", "Palatino Linotype", serif',
+      body: '"Segoe UI", -apple-system, Helvetica, Arial, sans-serif',
+      displayWeight: 600,
+    },
+    radius: {
+      base: '14px',
+      pill: '999px',
     },
   },
   {
-    id: 'sunset',
-    label: 'Sunset',
+    id: 'notte',
+    label: 'Notte di Castelsardo',
+    description: 'Sera sulla costa — tema a sfondo scuro, ambra e acqua',
     colors: {
-      primary: '#c2410c',
-      primaryDark: '#9a3412',
-      accent: '#0ea5e9',
-      surface: '#fffbeb',
-      background: '#fff7ed',
-      text: '#1c1917',
-      muted: '#78716c',
+      primary: '#e8a33d',
+      primaryDark: '#c6822a',
+      accent: '#5fa8a0',
+      onPrimary: '#221604',
+      surface: '#1a2226',
+      background: '#12181b',
+      text: '#d8d2c4',
+      muted: '#8b968f',
+      border: '#2b3438',
+    },
+    fonts: {
+      display: 'Futura, "Century Gothic", "Trebuchet MS", sans-serif',
+      body: '-apple-system, "Segoe UI", Helvetica, Arial, sans-serif',
+      displayWeight: 600,
+    },
+    radius: {
+      base: '8px',
+      pill: '8px',
     },
   },
   {
-    id: 'ocean',
-    label: 'Ocean',
+    id: 'macchia',
+    label: 'Macchia',
+    description: 'Verde e terra — tono informale, angoli morbidi',
     colors: {
-      primary: '#0369a1',
-      primaryDark: '#075985',
-      accent: '#f97316',
+      primary: '#4b6b3a',
+      primaryDark: '#364f29',
+      accent: '#9c5a3c',
+      onPrimary: '#f6f7ee',
       surface: '#ffffff',
-      background: '#f0f9ff',
-      text: '#0c1e2e',
-      muted: '#64748b',
+      background: '#eef0e2',
+      text: '#333c26',
+      muted: '#6a6e56',
+      border: '#dbe0c8',
     },
-  },
-  // US-1003 (EPIC 10): 10 temi aggiuntivi. Tutti a sfondo chiaro come i tre
-  // sopra — un tema a sfondo scuro richiederebbe rivedere i colori
-  // hardcoded (bordi, badge di stato, colori di brand OTA) sparsi nei
-  // componenti del mini-sito, non solo queste variabili, fuori scope qui.
-  // Ogni combinazione è stata verificata per il contrasto WCAG AA (testo/
-  // sfondo ≥ 4.5:1, primary/bianco per i pulsanti ≥ 4.5:1) calcolando la
-  // luminanza relativa, non scelta a occhio.
-  {
-    id: 'forest',
-    label: 'Forest',
-    colors: {
-      primary: '#15803d',
-      primaryDark: '#166534',
-      accent: '#ca8a04',
-      surface: '#ffffff',
-      background: '#f7faf7',
-      text: '#14201a',
-      muted: '#5b6b60',
+    fonts: {
+      display: '"Arial Rounded MT Bold", Verdana, "Trebuchet MS", sans-serif',
+      body: '"Trebuchet MS", Verdana, sans-serif',
+      displayWeight: 700,
+    },
+    radius: {
+      base: '22px',
+      pill: '999px',
     },
   },
   {
-    id: 'lavender',
-    label: 'Lavender',
+    id: 'calce',
+    label: 'Calce',
+    description: 'Bianco minimale — stile boutique, angoli squadrati',
     colors: {
-      primary: '#6d28d9',
-      primaryDark: '#5b21b6',
-      accent: '#ec4899',
+      primary: '#0e0e0e',
+      primaryDark: '#000000',
+      accent: '#167fa3',
+      onPrimary: '#ffffff',
       surface: '#ffffff',
-      background: '#faf5ff',
-      text: '#1e1b2e',
-      muted: '#6b6478',
+      background: '#ffffff',
+      text: '#2a2a2a',
+      muted: '#767676',
+      border: '#e2e2e2',
     },
-  },
-  {
-    id: 'terracotta',
-    label: 'Terracotta',
-    colors: {
-      primary: '#a83e26',
-      primaryDark: '#7c2d1b',
-      accent: '#0d9488',
-      surface: '#ffffff',
-      background: '#fdf6ec',
-      text: '#2a1d12',
-      muted: '#7a6a58',
+    fonts: {
+      display: '"Big Caslon", Didot, Georgia, serif',
+      body: 'Helvetica, Arial, sans-serif',
+      displayWeight: 500,
     },
-  },
-  {
-    id: 'slate',
-    label: 'Slate',
-    colors: {
-      primary: '#475569',
-      primaryDark: '#334155',
-      accent: '#f97316',
-      surface: '#ffffff',
-      background: '#f8fafc',
-      text: '#0f172a',
-      muted: '#64748b',
-    },
-  },
-  {
-    id: 'berry',
-    label: 'Berry',
-    colors: {
-      primary: '#9d174d',
-      primaryDark: '#831843',
-      accent: '#10b981',
-      surface: '#ffffff',
-      background: '#fdf2f8',
-      text: '#27121c',
-      muted: '#7a5560',
-    },
-  },
-  {
-    id: 'olive',
-    label: 'Olive',
-    colors: {
-      primary: '#65733e',
-      primaryDark: '#4d5830',
-      accent: '#c2410c',
-      surface: '#ffffff',
-      background: '#f9f8f2',
-      text: '#232318',
-      muted: '#6b6b53',
-    },
-  },
-  {
-    id: 'plum',
-    label: 'Plum',
-    colors: {
-      primary: '#86198f',
-      primaryDark: '#701a75',
-      accent: '#d97706',
-      surface: '#ffffff',
-      background: '#fdfaf6',
-      text: '#23132e',
-      muted: '#776a5c',
-    },
-  },
-  {
-    id: 'coral-reef',
-    label: 'Coral Reef',
-    colors: {
-      primary: '#be123c',
-      primaryDark: '#9f1239',
-      accent: '#06b6d4',
-      surface: '#ffffff',
-      background: '#fff5f5',
-      text: '#2c1215',
-      muted: '#8a6367',
-    },
-  },
-  {
-    id: 'sand',
-    label: 'Sand',
-    colors: {
-      primary: '#92400e',
-      primaryDark: '#78350f',
-      accent: '#1d4ed8',
-      surface: '#ffffff',
-      background: '#fefbf3',
-      text: '#241d10',
-      muted: '#756b57',
-    },
-  },
-  {
-    id: 'mint',
-    label: 'Mint',
-    colors: {
-      primary: '#047857',
-      primaryDark: '#065f46',
-      accent: '#f43f5e',
-      surface: '#ffffff',
-      background: '#f0fdf9',
-      text: '#0d211b',
-      muted: '#4f6b60',
+    radius: {
+      base: '2px',
+      pill: '2px',
     },
   },
 ]
