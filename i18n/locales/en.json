@@ -320,7 +320,8 @@
       "openLabel": "Open photo {n} full screen",
       "close": "Close",
       "previous": "Previous photo",
-      "next": "Next photo"
+      "next": "Next photo",
+      "morePhotos": "+{n} photos"
     },
     "occupancy": {
       "maxGuests": "Guests",

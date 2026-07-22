@@ -320,7 +320,8 @@
       "openLabel": "Apri la foto {n} a schermo intero",
       "close": "Chiudi",
       "previous": "Foto precedente",
-      "next": "Foto successiva"
+      "next": "Foto successiva",
+      "morePhotos": "+{n} foto"
     },
     "occupancy": {
       "maxGuests": "Ospiti",
