@@ -312,6 +312,8 @@
     }
   },
   "minisite": {
+    "shareWhatsapp": "Condividi",
+    "shareWhatsappText": "Dai un'occhiata a {name}: {link}",
     "notFound": {
       "title": "Proprietà non trovata",
       "message": "Questa pagina non esiste o non è al momento disponibile."
@@ -330,7 +332,9 @@
       "beds": "Letti"
     },
     "location": {
-      "title": "Dove si trova"
+      "title": "Dove si trova",
+      "shareWhatsapp": "Condividi",
+      "shareWhatsappText": "Ecco dove si trova {name}: {link}"
     },
     "checkIn": "Check-in",
     "checkOut": "Check-out",

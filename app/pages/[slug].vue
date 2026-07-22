@@ -172,6 +172,30 @@ const mapCoordinates = computed(() => {
   return { latitude: property.value.latitude, longitude: property.value.longitude }
 })
 
+// US-2009: condivisione della posizione su WhatsApp — link standard
+// "https://wa.me/?text=..." (nessuna API/secret coinvolta). Il link nel
+// messaggio punta a Google Maps (solo URL pubblico, non l'SDK a pagamento)
+// perché è quello che il destinatario ha più probabilmente installato,
+// non al mini-sito stesso: la richiesta era condividere la posizione, non
+// la pagina.
+const whatsappLocationShareUrl = computed(() => {
+  if (!mapCoordinates.value || !property.value) return ''
+  const mapsLink = `https://www.google.com/maps?q=${mapCoordinates.value.latitude},${mapCoordinates.value.longitude}`
+  const text = t('minisite.location.shareWhatsappText', { name: property.value.name, link: mapsLink })
+  return `https://wa.me/?text=${encodeURIComponent(text)}`
+})
+
+// US-2010: condivisione del link del mini-sito stesso (non la posizione) —
+// stesso pattern "wa.me", ma qui il link nel messaggio è requestUrl.href
+// (già calcolato per og:url, US-1504), non Google Maps. Sempre visibile
+// quando la proprietà è caricata: a differenza della mappa, il mini-sito
+// esiste sempre, indipendentemente da lat/lng.
+const whatsappPageShareUrl = computed(() => {
+  if (!property.value) return ''
+  const text = t('minisite.shareWhatsappText', { name: property.value.name, link: requestUrl.href })
+  return `https://wa.me/?text=${encodeURIComponent(text)}`
+})
+
 // --- US-1504: tag SEO e anteprima di condivisione social ---
 const coverImageUrl = computed(() => {
   const cover = photos.value.find(p => p.is_cover) ?? photos.value[0]
@@ -256,9 +280,39 @@ useSeoMeta({
         non è più isolato in fondo alla pagina (com'era prima di EPIC 21).
       -->
       <header class="minisite__header">
-        <h1 class="minisite__name">
-          {{ property.name }}
-        </h1>
+        <div class="minisite__header-row">
+          <h1 class="minisite__name">
+            {{ property.name }}
+          </h1>
+          <a
+            :href="whatsappPageShareUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="minisite-share-button"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ><circle
+              cx="18"
+              cy="5"
+              r="2.4"
+            /><circle
+              cx="6"
+              cy="12"
+              r="2.4"
+            /><circle
+              cx="18"
+              cy="19"
+              r="2.4"
+            /><path d="M8.2 10.7 15.8 6.3M8.2 13.3l7.6 4.4" /></svg>
+            {{ t('minisite.shareWhatsapp') }}
+          </a>
+        </div>
         <p
           v-if="property.property_type || locationLine"
           class="minisite__subline"
@@ -390,9 +444,39 @@ useSeoMeta({
         v-if="mapCoordinates"
         class="minisite-section"
       >
-        <h2 class="minisite-section__title">
-          {{ t('minisite.location.title') }}
-        </h2>
+        <div class="minisite-section__header">
+          <h2 class="minisite-section__title">
+            {{ t('minisite.location.title') }}
+          </h2>
+          <a
+            :href="whatsappLocationShareUrl"
+            target="_blank"
+            rel="noopener noreferrer"
+            class="minisite-share-button"
+          >
+            <svg
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              stroke-width="1.6"
+              stroke-linecap="round"
+              stroke-linejoin="round"
+            ><circle
+              cx="18"
+              cy="5"
+              r="2.4"
+            /><circle
+              cx="6"
+              cy="12"
+              r="2.4"
+            /><circle
+              cx="18"
+              cy="19"
+              r="2.4"
+            /><path d="M8.2 10.7 15.8 6.3M8.2 13.3l7.6 4.4" /></svg>
+            {{ t('minisite.location.shareWhatsapp') }}
+          </a>
+        </div>
         <MiniSiteLocationMap
           :latitude="mapCoordinates.latitude"
           :longitude="mapCoordinates.longitude"
@@ -478,6 +562,10 @@ useSeoMeta({
   @apply mt-6;
 }
 
+.minisite__header-row {
+  @apply flex flex-wrap items-center justify-between gap-2;
+}
+
 .minisite__name {
   @apply text-2xl;
   font-family: var(--font-family-display);
@@ -540,5 +628,22 @@ useSeoMeta({
   font-family: var(--font-family-display);
   font-weight: var(--font-display-weight, 700);
   color: var(--color-text);
+}
+
+/* US-2009: intestazione della sezione mappa con il pulsante di condivisione */
+.minisite-section__header {
+  @apply flex flex-wrap items-center justify-between gap-2;
+}
+
+.minisite-share-button {
+  @apply flex shrink-0 items-center gap-1.5 whitespace-nowrap px-3 py-1.5 text-xs font-medium;
+  color: var(--color-text);
+  border: 1px solid var(--color-border, #e5e7eb);
+  border-radius: var(--radius-pill, 999px);
+}
+
+.minisite-share-button svg {
+  @apply h-3.5 w-3.5 shrink-0;
+  color: var(--color-primary);
 }
 </style>

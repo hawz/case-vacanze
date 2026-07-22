@@ -312,6 +312,8 @@
     }
   },
   "minisite": {
+    "shareWhatsapp": "Share",
+    "shareWhatsappText": "Check out {name}: {link}",
     "notFound": {
       "title": "Property not found",
       "message": "This page doesn't exist or isn't currently available."
@@ -330,7 +332,9 @@
       "beds": "Beds"
     },
     "location": {
-      "title": "Where it is"
+      "title": "Where it is",
+      "shareWhatsapp": "Share",
+      "shareWhatsappText": "Here's where {name} is located: {link}"
     },
     "checkIn": "Check-in",
     "checkOut": "Check-out",
