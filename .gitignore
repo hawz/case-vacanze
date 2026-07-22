@@ -23,3 +23,4 @@ prisma/*.db
 # Documento Backlog
 backlog.md
 CLAUDE.md
+docs/*
