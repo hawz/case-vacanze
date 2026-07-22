@@ -47,7 +47,9 @@ const { t } = useI18n()
 }
 
 .minisite-section__title {
-  @apply text-lg font-semibold;
+  @apply text-lg;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-display-weight, 700);
   color: var(--color-text);
 }
 
@@ -56,9 +58,10 @@ const { t } = useI18n()
 }
 
 .minisite-announcement {
-  @apply rounded-md border-l-4 p-3;
+  @apply border-l-4 p-3;
   border-color: #9ca3af;
   background-color: var(--color-surface);
+  border-radius: var(--radius-base, 8px);
 }
 
 .minisite-announcement--warning {

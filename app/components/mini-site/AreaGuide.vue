@@ -86,7 +86,9 @@ const hasContent = computed(() => !!props.content?.trim() || props.pois.length >
 }
 
 .minisite-section__title {
-  @apply text-lg font-semibold;
+  @apply text-lg;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-display-weight, 700);
   color: var(--color-text);
 }
 
@@ -105,9 +107,10 @@ const hasContent = computed(() => !!props.content?.trim() || props.pois.length >
 }
 
 .minisite-poi {
-  @apply rounded-md border p-3;
-  border-color: #e5e7eb;
+  @apply border p-3;
+  border-color: var(--color-border, #e5e7eb);
   background-color: var(--color-surface);
+  border-radius: var(--radius-base, 8px);
 }
 
 .minisite-poi__header {

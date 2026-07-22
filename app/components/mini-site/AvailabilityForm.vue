@@ -309,7 +309,9 @@ async function onSubmit() {
 }
 
 .minisite-section__title {
-  @apply text-lg font-semibold;
+  @apply text-lg;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-display-weight, 700);
   color: var(--color-text);
 }
 
@@ -319,9 +321,10 @@ async function onSubmit() {
 }
 
 .availability-form {
-  @apply mt-3 space-y-3 rounded-md border p-4;
-  border-color: #e5e7eb;
+  @apply mt-3 space-y-3 border p-4;
+  border-color: var(--color-border, #e5e7eb);
   background-color: var(--color-surface);
+  border-radius: var(--radius-base, 8px);
 }
 
 .availability-form__row {
@@ -338,8 +341,9 @@ async function onSubmit() {
 }
 
 .availability-form__input {
-  @apply w-full rounded-md border px-3 py-2 text-base focus:outline-none focus:ring-2;
-  border-color: #d1d5db;
+  @apply w-full border px-3 py-2 text-base focus:outline-none focus:ring-2;
+  border-color: var(--color-border, #d1d5db);
+  border-radius: var(--radius-base, 8px);
   --tw-ring-color: var(--color-primary);
 }
 
@@ -365,8 +369,10 @@ async function onSubmit() {
 }
 
 .availability-form__submit {
-  @apply rounded-md px-4 py-2 text-sm font-medium text-white disabled:opacity-50;
+  @apply px-4 py-2 text-sm font-medium disabled:opacity-50;
   background-color: var(--color-primary);
+  color: var(--color-on-primary, #fff);
+  border-radius: var(--radius-pill, 8px);
 }
 
 .availability-form__submitted {

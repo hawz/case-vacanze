@@ -134,15 +134,29 @@ const activeAnnouncements = computed(() => data.value?.activeAnnouncements ?? []
 const otaLinks = computed(() => data.value?.otaLinks ?? [])
 const blockedRanges = computed(() => data.value?.blockedRanges ?? [])
 
-const theme = computed(() => getTheme(property.value?.theme_id ?? 'default'))
+const theme = computed(() => getTheme(property.value?.theme_id ?? 'meridiana'))
 const themeVars = computed(() => ({
   '--color-primary': theme.value.colors.primary,
   '--color-primary-dark': theme.value.colors.primaryDark,
   '--color-accent': theme.value.colors.accent,
+  '--color-on-primary': theme.value.colors.onPrimary,
   '--color-surface': theme.value.colors.surface,
   '--color-background': theme.value.colors.background,
   '--color-text': theme.value.colors.text,
   '--color-muted': theme.value.colors.muted,
+  '--color-border': theme.value.colors.border,
+  // Sovrascrivono le variabili omonime di app/assets/css/main.css SOLO
+  // dentro questo sottoalbero (style inline sul contenitore .minisite):
+  // il resto del sito (dashboard, wizard, home) non viene toccato. Vedi
+  // il gotcha in CLAUDE.md sul perché serve ridichiarare `font-family`
+  // esplicitamente sugli elementi, non basta sovrascrivere la custom
+  // property, dato che l'inheritance normale di `font-family` propaga il
+  // valore già risolto, non ri-legge la variabile ad ogni discendente.
+  '--font-family-display': theme.value.fonts.display,
+  '--font-display-weight': String(theme.value.fonts.displayWeight),
+  '--font-family-base': theme.value.fonts.body,
+  '--radius-base': theme.value.radius.base,
+  '--radius-pill': theme.value.radius.pill,
 }))
 
 const locationLine = computed(() => {
@@ -235,8 +249,12 @@ useSeoMeta({
         {{ t('minisite.previewBanner') }}
       </p>
 
-      <MiniSiteGallery :photos="photos" />
-
+      <!--
+        US-2101: nome, luogo e fatti chiave (ospiti/camere/bagni/letti +
+        check-in/check-out) vengono prima della galleria, non dopo — sono le
+        informazioni che un visitatore cerca per primo. Il check-in/check-out
+        non è più isolato in fondo alla pagina (com'era prima di EPIC 21).
+      -->
       <header class="minisite__header">
         <h1 class="minisite__name">
           {{ property.name }}
@@ -257,15 +275,116 @@ useSeoMeta({
         </p>
       </header>
 
-      <div
-        v-if="occupancy"
-        class="minisite-stats"
-      >
-        <span class="minisite-stats__item">{{ occupancy.max_guests }} {{ t('minisite.occupancy.maxGuests') }}</span>
-        <span class="minisite-stats__item">{{ occupancy.bedrooms }} {{ t('minisite.occupancy.bedrooms') }}</span>
-        <span class="minisite-stats__item">{{ occupancy.bathrooms }} {{ t('minisite.occupancy.bathrooms') }}</span>
-        <span class="minisite-stats__item">{{ occupancy.beds }} {{ t('minisite.occupancy.beds') }}</span>
+      <div class="minisite-facts">
+        <span
+          v-if="occupancy"
+          class="minisite-facts__item"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ><circle
+            cx="12"
+            cy="8"
+            r="3.4"
+          /><path d="M4.5 20c0-4.4 3.4-6.6 7.5-6.6s7.5 2.2 7.5 6.6" /></svg>
+          <b>{{ occupancy.max_guests }}</b> {{ t('minisite.occupancy.maxGuests') }}
+        </span>
+        <span
+          v-if="occupancy"
+          class="minisite-facts__item"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ><rect
+            x="5"
+            y="4"
+            width="14"
+            height="16"
+            rx="1.5"
+          /><circle
+            cx="14.2"
+            cy="12"
+            r="1"
+          /></svg>
+          <b>{{ occupancy.bedrooms }}</b> {{ t('minisite.occupancy.bedrooms') }}
+        </span>
+        <span
+          v-if="occupancy"
+          class="minisite-facts__item"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ><path d="M4 13h16v2.5A3.5 3.5 0 0 1 16.5 19h-9A3.5 3.5 0 0 1 4 15.5V13Z" /><path d="M6 13V9a2 2 0 0 1 2-2h1a2 2 0 0 1 2 2v1" /><path d="M4 19v1.4M20 19v1.4" /></svg>
+          <b>{{ occupancy.beds }}</b> {{ t('minisite.occupancy.beds') }}
+        </span>
+        <span
+          v-if="occupancy"
+          class="minisite-facts__item"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ><path d="M12 3c2.4 3 4.6 5.6 4.6 8.4A4.6 4.6 0 0 1 12 16a4.6 4.6 0 0 1-4.6-4.6C7.4 8.6 9.6 6 12 3Z" /></svg>
+          <b>{{ occupancy.bathrooms }}</b> {{ t('minisite.occupancy.bathrooms') }}
+        </span>
+        <span
+          v-if="property.check_in_time"
+          class="minisite-facts__item"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ><circle
+            cx="12"
+            cy="12"
+            r="8.2"
+          /><path d="M12 7.5V12l3.2 1.9" /></svg>
+          {{ t('minisite.checkIn') }} <b>{{ property.check_in_time }}</b>
+        </span>
+        <span
+          v-if="property.check_out_time"
+          class="minisite-facts__item"
+        >
+          <svg
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="1.6"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+          ><circle
+            cx="12"
+            cy="12"
+            r="8.2"
+          /><path d="M12 7.5V12l3.2 1.9" /></svg>
+          {{ t('minisite.checkOut') }} <b>{{ property.check_out_time }}</b>
+        </span>
       </div>
+
+      <MiniSiteGallery :photos="photos" />
 
       <section
         v-if="mapCoordinates"
@@ -293,16 +412,6 @@ useSeoMeta({
         {{ property.long_description }}
       </p>
 
-      <div
-        v-if="property.check_in_time || property.check_out_time"
-        class="minisite-checktimes"
-      >
-        <span v-if="property.check_in_time"><strong>{{ t('minisite.checkIn') }}:</strong> {{ property.check_in_time
-        }}</span>
-        <span v-if="property.check_out_time"><strong>{{ t('minisite.checkOut') }}:</strong> {{ property.check_out_time
-        }}</span>
-      </div>
-
       <MiniSiteAnnouncements :announcements="activeAnnouncements" />
       <MiniSiteOptionals :optionals="optionals" />
       <MiniSiteHouseRules :house-rules="houseRules" />
@@ -325,6 +434,16 @@ useSeoMeta({
 .minisite {
   @apply mx-auto max-w-3xl px-4 py-8;
   background-color: var(--color-background);
+  color: var(--color-text);
+  /*
+    Sovrascrive il font-family ereditato da html (main.css) SOLO qui dentro:
+    var(--font-family-base) a questo punto risolve al valore impostato da
+    themeVars sul :style di questo stesso elemento, non al default globale —
+    ma va ridichiarato esplicitamente: il font-family già calcolato su html
+    si eredita come valore risolto, non si ricalcola da solo quando la
+    custom property viene sovrascritta più in basso nell'albero.
+  */
+  font-family: var(--font-family-base);
 }
 
 .minisite__loading {
@@ -360,7 +479,9 @@ useSeoMeta({
 }
 
 .minisite__name {
-  @apply text-2xl font-bold;
+  @apply text-2xl;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-display-weight, 700);
   color: var(--color-text);
 }
 
@@ -369,14 +490,28 @@ useSeoMeta({
   color: var(--color-muted);
 }
 
-.minisite-stats {
-  @apply mt-4 flex flex-wrap gap-3 text-sm;
+/*
+  flex-nowrap forzato: le pill non devono mai andare a capo (richiesta
+  esplicita di Albe). overflow-x auto è solo una rete di sicurezza per
+  viewport molto strette (poche decine di px in meno del necessario) — con
+  padding/gap/font-size ridotti qui sotto, su schermi normali entrano tutte
+  senza bisogno di scorrere.
+*/
+.minisite-facts {
+  @apply mt-4 flex flex-nowrap gap-1.5 overflow-x-auto text-xs;
 }
 
-.minisite-stats__item {
-  @apply rounded-full px-3 py-1;
+.minisite-facts__item {
+  @apply flex shrink-0 items-center gap-1.5 whitespace-nowrap px-2.5 py-1.5 font-medium;
   background-color: var(--color-surface);
   color: var(--color-text);
+  border: 1px solid var(--color-border, transparent);
+  border-radius: var(--radius-pill, 999px);
+}
+
+.minisite-facts__item svg {
+  @apply h-3.5 w-3.5 shrink-0;
+  color: var(--color-primary);
 }
 
 .minisite__short-description {
@@ -386,11 +521,6 @@ useSeoMeta({
 
 .minisite__long-description {
   @apply mt-3 whitespace-pre-line text-sm;
-  color: var(--color-text);
-}
-
-.minisite-checktimes {
-  @apply mt-4 flex flex-wrap gap-4 text-sm;
   color: var(--color-text);
 }
 
@@ -406,7 +536,9 @@ useSeoMeta({
 }
 
 .minisite-section__title {
-  @apply text-lg font-semibold;
+  @apply text-lg;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-display-weight, 700);
   color: var(--color-text);
 }
 </style>

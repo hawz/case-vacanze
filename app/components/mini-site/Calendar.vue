@@ -153,14 +153,17 @@ function nextMonth() {
 }
 
 .minisite-section__title {
-  @apply text-lg font-semibold;
+  @apply text-lg;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-display-weight, 700);
   color: var(--color-text);
 }
 
 .minisite-calendar {
-  @apply mt-3 max-w-sm rounded-md border p-4;
-  border-color: #e5e7eb;
+  @apply mt-3 max-w-sm border p-4;
+  border-color: var(--color-border, #e5e7eb);
   background-color: var(--color-surface);
+  border-radius: var(--radius-base, 8px);
 }
 
 .minisite-calendar__header {
@@ -173,8 +176,9 @@ function nextMonth() {
 }
 
 .minisite-calendar__nav {
-  @apply rounded-md border px-2 py-1 text-sm;
-  border-color: #d1d5db;
+  @apply border px-2 py-1 text-sm;
+  border-color: var(--color-border, #d1d5db);
+  border-radius: var(--radius-base, 8px);
   color: var(--color-text);
 }
 
@@ -188,8 +192,9 @@ function nextMonth() {
 }
 
 .minisite-calendar__day {
-  @apply flex aspect-square items-center justify-center rounded-md text-sm;
+  @apply flex aspect-square items-center justify-center text-sm;
   color: var(--color-text);
+  border-radius: var(--radius-base, 8px);
 }
 
 .minisite-calendar__day--outside {

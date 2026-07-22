@@ -97,34 +97,44 @@ async function saveTheme() {
           :key="theme.id"
           class="theme-card"
           :class="{ 'theme-card--selected': selectedThemeId === theme.id }"
+          :style="{ borderRadius: `calc(${theme.radius.base} + 8px)` }"
         >
           <button
             type="button"
             class="theme-card__button"
+            :style="{ borderRadius: theme.radius.base }"
             @click="selectedThemeId = theme.id"
           >
             <span
               class="theme-card__swatches"
-              :style="{ backgroundColor: theme.colors.background }"
+              :style="{ backgroundColor: theme.colors.background, borderRadius: theme.radius.base }"
             >
               <span
                 class="theme-card__swatch"
-                :style="{ backgroundColor: theme.colors.primary }"
+                :style="{ backgroundColor: theme.colors.primary, borderRadius: theme.radius.pill }"
               />
               <span
                 class="theme-card__swatch"
-                :style="{ backgroundColor: theme.colors.accent }"
+                :style="{ backgroundColor: theme.colors.accent, borderRadius: theme.radius.pill }"
               />
               <span
                 class="theme-card__swatch"
-                :style="{ backgroundColor: theme.colors.surface }"
+                :style="{ backgroundColor: theme.colors.surface, borderRadius: theme.radius.pill }"
               />
               <span
                 class="theme-card__swatch"
-                :style="{ backgroundColor: theme.colors.text }"
+                :style="{ backgroundColor: theme.colors.text, borderRadius: theme.radius.pill }"
               />
+              <span
+                class="theme-card__sample"
+                :style="{ fontFamily: theme.fonts.display, fontWeight: theme.fonts.displayWeight, color: theme.colors.text }"
+              >Aa</span>
             </span>
-            <span class="theme-card__label">{{ theme.label }}</span>
+            <span
+              class="theme-card__label"
+              :style="{ fontFamily: theme.fonts.display, fontWeight: theme.fonts.displayWeight }"
+            >{{ theme.label }}</span>
+            <span class="theme-card__description">{{ theme.description }}</span>
             <span
               v-if="selectedThemeId === theme.id"
               class="theme-card__badge"
@@ -203,7 +213,10 @@ async function saveTheme() {
 }
 
 .theme-card {
-  @apply rounded-md border-2;
+  /* border-radius impostato inline (theme.radius.base + margine): ogni
+     card riflette anche nella propria cornice la forma del tema che
+     rappresenta, non solo colori e font — vedi EPIC 21/US-2103. */
+  @apply border-2;
   border-color: #e5e7eb;
 }
 
@@ -212,23 +225,32 @@ async function saveTheme() {
 }
 
 .theme-card__button {
-  @apply flex w-full flex-col items-start gap-3 rounded-md p-3 text-left;
+  @apply flex w-full flex-col items-start gap-3 p-3 text-left;
   background-color: var(--color-surface);
 }
 
 .theme-card__swatches {
-  @apply flex w-full items-center gap-2 rounded-md border p-3;
+  @apply relative flex w-full items-center gap-2 border p-3;
   border-color: #e5e7eb;
 }
 
 .theme-card__swatch {
-  @apply h-8 w-8 rounded-full border;
+  @apply h-8 w-8 border;
   border-color: rgb(0 0 0 / 10%);
+}
+
+.theme-card__sample {
+  @apply ml-auto text-xl leading-none;
 }
 
 .theme-card__label {
   @apply font-medium;
   color: var(--color-text);
+}
+
+.theme-card__description {
+  @apply -mt-2 text-xs;
+  color: var(--color-muted);
 }
 
 .theme-card__badge {

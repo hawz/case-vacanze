@@ -65,8 +65,9 @@ onBeforeUnmount(() => {
 
 <style scoped>
 .minisite-map {
-  @apply mt-4 w-full rounded-md border;
+  @apply mt-4 w-full border;
   height: 280px;
-  border-color: #d1d5db;
+  border-color: var(--color-border, #d1d5db);
+  border-radius: var(--radius-base, 8px);
 }
 </style>

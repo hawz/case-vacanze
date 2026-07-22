@@ -50,7 +50,9 @@ function platformLabel(platform: string) {
 }
 
 .minisite-section__title {
-  @apply text-lg font-semibold;
+  @apply text-lg;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-display-weight, 700);
   color: var(--color-text);
 }
 
@@ -59,8 +61,9 @@ function platformLabel(platform: string) {
 }
 
 .minisite-ota-link {
-  @apply rounded-md px-4 py-2 text-sm font-medium text-white;
+  @apply px-4 py-2 text-sm font-medium text-white;
   background-color: var(--color-primary);
+  border-radius: var(--radius-pill, 8px);
 }
 
 .minisite-ota-link--airbnb {
@@ -72,6 +75,13 @@ function platformLabel(platform: string) {
 }
 
 .minisite-ota-link--other {
-  background-color: var(--color-muted);
+  /*
+    Non "muted" su testo bianco: con alcuni temi (es. Notte di Castelsardo)
+    il grigio muted è troppo chiaro per garantire contrasto AA con testo
+    bianco. Riusa la coppia primary/onPrimary, già verificata ≥4.5:1 per
+    ogni tema (vedi config/themes.ts).
+  */
+  background-color: var(--color-primary);
+  color: var(--color-on-primary, #fff);
 }
 </style>

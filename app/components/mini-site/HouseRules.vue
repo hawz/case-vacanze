@@ -60,7 +60,9 @@ const rulesByType = computed(() => TYPES.map(type => ({
 }
 
 .minisite-section__title {
-  @apply text-lg font-semibold;
+  @apply text-lg;
+  font-family: var(--font-family-display);
+  font-weight: var(--font-display-weight, 700);
   color: var(--color-text);
 }
 
@@ -69,9 +71,10 @@ const rulesByType = computed(() => TYPES.map(type => ({
 }
 
 .minisite-house-rule-group {
-  @apply rounded-md border p-3;
-  border-color: #e5e7eb;
+  @apply border p-3;
+  border-color: var(--color-border, #e5e7eb);
   background-color: var(--color-surface);
+  border-radius: var(--radius-base, 8px);
 }
 
 .minisite-house-rule-group__title {
