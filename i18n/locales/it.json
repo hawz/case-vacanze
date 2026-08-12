@@ -140,7 +140,8 @@
   "nav": {
     "profile": "Profilo",
     "logout": "Esci",
-    "admin": "Amministrazione"
+    "admin": "Amministrazione",
+    "backToTop": "Torna in cima alla pagina"
   },
   "properties": {
     "title": "Le tue proprietà",
