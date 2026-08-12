@@ -74,9 +74,13 @@ function formatShortDate(isoDate: string) {
 }
 
 .dashboard-kpi {
-  @apply flex flex-col gap-1 rounded-md border p-4;
+  /* 10px come le altre card della dashboard (RequestsChart/StatusDonut/
+     ActivityFeed/elenco proprietà), non il rounded-md/6px usato altrove nel
+     backoffice — coerenza con il mockup approvato (docs/epic-22-mockup.html). */
+  @apply flex flex-col gap-1 border p-4;
   border-color: #e5e7eb;
   background-color: var(--color-surface);
+  border-radius: 10px;
 }
 
 .dashboard-kpi__label {
