@@ -147,6 +147,14 @@
     "createButton": "New property",
     "loadError": "We couldn't load your properties.",
     "dashboard": {
+      "subtitle": "Overview as of {date}",
+      "listTitle": "Properties",
+      "moreActions": "More actions",
+      "meta": {
+        "created": "created {time}",
+        "updated": "updated {time}",
+        "suspended": "suspended {time}"
+      },
       "kpi": {
         "published": "Published",
         "publishedDelta": "of {total} total",

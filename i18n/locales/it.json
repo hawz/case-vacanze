@@ -147,6 +147,14 @@
     "createButton": "Nuova proprietà",
     "loadError": "Non è stato possibile caricare le proprietà.",
     "dashboard": {
+      "subtitle": "Panoramica aggiornata al {date}",
+      "listTitle": "Proprietà",
+      "moreActions": "Altre azioni",
+      "meta": {
+        "created": "creata {time}",
+        "updated": "aggiornata {time}",
+        "suspended": "sospesa {time}"
+      },
       "kpi": {
         "published": "Pubblicate",
         "publishedDelta": "su {total} totali",
