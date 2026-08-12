@@ -78,7 +78,12 @@ create table public.photos (
   alt_text text,
   category photo_category not null default 'OTHER',
   sort_order int not null default 0,
-  is_cover boolean not null default false
+  is_cover boolean not null default false,
+  -- Aggiunta il 2026-08-12 (EPIC 22/US-2204, feed "Attività recente" della
+  -- dashboard): mancava completamente un timestamp di caricamento, quindi non
+  -- si poteva sapere "quando" è stata aggiunta una foto. Su un DB esistente:
+  -- `alter table public.photos add column created_at timestamptz not null default now();`
+  created_at timestamptz not null default now()
 );
 
 create table public.ota_links (
@@ -166,7 +171,17 @@ create table public.availability_requests (
   guests_count int not null,
   message text,
   status request_status not null default 'NEW',
-  created_at timestamptz not null default now()
+  created_at timestamptz not null default now(),
+  -- Aggiunta il 2026-08-12 (EPIC 22/US-2204): serve per mostrare nel feed
+  -- "Attività recente" della dashboard il momento in cui una richiesta è
+  -- passata di stato (es. "Accettata 2 ore fa") — prima non esisteva nessun
+  -- timestamp diverso dalla creazione. Aggiornata dal trigger set_updated_at
+  -- (sezione 3 più sotto) ad ogni UPDATE della riga, non solo sul cambio
+  -- stato — approssimazione accettata: non c'è granularità per sapere
+  -- "quale" campo è cambiato, ma in pratica l'unica modifica che l'app fa a
+  -- una richiesta esistente è il cambio di `status` (US-1402).
+  -- Su un DB esistente: `alter table public.availability_requests add column updated_at timestamptz not null default now();`
+  updated_at timestamptz not null default now()
 );
 
 -- ============================================================
@@ -184,6 +199,29 @@ $$ language plpgsql security definer set search_path = public;
 create trigger on_auth_user_created
   after insert on auth.users
   for each row execute procedure public.handle_new_user();
+
+-- Aggiunta il 2026-08-12 (EPIC 22/US-2204): `properties.updated_at` esisteva
+-- già dal primo schema ma non veniva mai aggiornato da nessuna parte (né da
+-- un trigger né dal codice applicativo, verificato: nessun `update_at` è mai
+-- scritto in app/) — sempre uguale a `created_at` in pratica. Il feed
+-- "Attività recente" della dashboard ne ha bisogno per mostrare "quando" è
+-- cambiato lo stato di una proprietà (es. sospensione). Trigger generico,
+-- riusabile su qualunque tabella con una colonna `updated_at`.
+create or replace function public.set_updated_at()
+returns trigger as $$
+begin
+  new.updated_at = now();
+  return new;
+end;
+$$ language plpgsql;
+
+create trigger properties_set_updated_at
+  before update on public.properties
+  for each row execute procedure public.set_updated_at();
+
+create trigger availability_requests_set_updated_at
+  before update on public.availability_requests
+  for each row execute procedure public.set_updated_at();
 
 -- ============================================================
 -- 4. Funzioni helper per le policy
