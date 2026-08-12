@@ -65,6 +65,16 @@ function toIsoDate(date: Date) {
   return `${y}-${m}-${d}`
 }
 
+// US-2012: evidenzia il giorno di oggi e permette di tornarci con un click
+// dopo essersi spostati su un altro mese.
+const todayIso = toIsoDate(today)
+const isCurrentMonth = computed(() => viewYear.value === today.getFullYear() && viewMonth.value === today.getMonth())
+
+function goToToday() {
+  viewYear.value = today.getFullYear()
+  viewMonth.value = today.getMonth()
+}
+
 const monthLabel = computed(() => new Intl.DateTimeFormat(locale.value, { month: 'long', year: 'numeric' }).format(new Date(viewYear.value, viewMonth.value, 1)))
 
 const weekdayLabels = computed(() => {
@@ -93,6 +103,7 @@ const calendarWeeks = computed(() => {
         day: cursor.getDate(),
         iso,
         inMonth: cursor.getMonth() === viewMonth.value,
+        isToday: iso === todayIso,
         blocked: blockedDates.value.some(b => b.start_date <= iso && iso <= b.end_date),
       })
       cursor.setDate(cursor.getDate() + 1)
@@ -268,7 +279,17 @@ async function confirmDelete(block: BlockedDate) {
           >
             ←
           </button>
-          <span class="month-view__label">{{ monthLabel }}</span>
+          <span class="month-view__label-group">
+            <span class="month-view__label">{{ monthLabel }}</span>
+            <button
+              v-if="!isCurrentMonth"
+              type="button"
+              class="month-view__today"
+              @click="goToToday"
+            >
+              {{ t('calendar.today') }}
+            </button>
+          </span>
           <button
             type="button"
             class="month-view__nav"
@@ -298,7 +319,7 @@ async function confirmDelete(block: BlockedDate) {
             v-for="cell in week"
             :key="cell.iso"
             class="month-view__day"
-            :class="{ 'month-view__day--outside': !cell.inMonth, 'month-view__day--blocked': cell.blocked }"
+            :class="{ 'month-view__day--outside': !cell.inMonth, 'month-view__day--blocked': cell.blocked, 'month-view__day--today': cell.isToday }"
           >
             {{ cell.day }}
           </span>
@@ -527,9 +548,19 @@ async function confirmDelete(block: BlockedDate) {
   @apply flex items-center justify-between;
 }
 
+.month-view__label-group {
+  @apply flex items-center gap-2;
+}
+
 .month-view__label {
   @apply text-sm font-semibold capitalize;
   color: var(--color-text);
+}
+
+.month-view__today {
+  @apply rounded-full border px-2 py-0.5 text-xs font-medium;
+  border-color: #d1d5db;
+  color: var(--color-primary);
 }
 
 .month-view__nav {
@@ -548,7 +579,7 @@ async function confirmDelete(block: BlockedDate) {
 }
 
 .month-view__day {
-  @apply flex aspect-square items-center justify-center rounded-md text-sm;
+  @apply flex aspect-square items-center justify-center text-sm;
   color: var(--color-text);
 }
 
@@ -561,6 +592,16 @@ async function confirmDelete(block: BlockedDate) {
   background-color: #fee2e2;
   color: #991b1b;
   font-weight: 600;
+}
+
+/*
+  box-shadow inset invece di border: non riduce lo spazio interno della
+  cella e resta visibile anche sopra allo sfondo rosso di --blocked, se il
+  giorno di oggi risulta anche bloccato — i due stati non si escludono.
+*/
+.month-view__day--today {
+  font-weight: 700;
+  box-shadow: inset 0 0 0 2px var(--color-primary);
 }
 
 .calendar-add {

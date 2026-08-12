@@ -229,6 +229,7 @@
     "loading": "Caricamento...",
     "prevMonth": "Mese precedente",
     "nextMonth": "Mese successivo",
+    "today": "Oggi",
     "add": {
       "title": "Blocca un periodo",
       "startDateLabel": "Dal",
@@ -416,6 +417,7 @@
       "title": "Disponibilità",
       "prevMonth": "Mese precedente",
       "nextMonth": "Mese successivo",
+      "today": "Oggi",
       "legendBlocked": "Non disponibile",
       "legendAvailable": "Disponibile"
     },

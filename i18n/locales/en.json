@@ -229,6 +229,7 @@
     "loading": "Loading...",
     "prevMonth": "Previous month",
     "nextMonth": "Next month",
+    "today": "Today",
     "add": {
       "title": "Block a period",
       "startDateLabel": "From",
@@ -416,6 +417,7 @@
       "title": "Availability",
       "prevMonth": "Previous month",
       "nextMonth": "Next month",
+      "today": "Today",
       "legendBlocked": "Not available",
       "legendAvailable": "Available"
     },

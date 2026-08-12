@@ -25,6 +25,16 @@ function toIsoDate(date: Date) {
   return `${y}-${m}-${d}`
 }
 
+// US-2012: evidenzia il giorno di oggi e permette di tornarci con un click
+// dopo essersi spostati su un altro mese.
+const todayIso = toIsoDate(today)
+const isCurrentMonth = computed(() => viewYear.value === today.getFullYear() && viewMonth.value === today.getMonth())
+
+function goToToday() {
+  viewYear.value = today.getFullYear()
+  viewMonth.value = today.getMonth()
+}
+
 const monthLabel = computed(() => new Intl.DateTimeFormat(locale.value, { month: 'long', year: 'numeric' }).format(new Date(viewYear.value, viewMonth.value, 1)))
 
 const weekdayLabels = computed(() => {
@@ -51,6 +61,7 @@ const calendarWeeks = computed(() => {
         day: cursor.getDate(),
         iso,
         inMonth: cursor.getMonth() === viewMonth.value,
+        isToday: iso === todayIso,
         blocked: props.blockedRanges.some(b => b.start_date <= iso && iso <= b.end_date),
       })
       cursor.setDate(cursor.getDate() + 1)
@@ -97,7 +108,17 @@ function nextMonth() {
         >
           ←
         </button>
-        <span class="minisite-calendar__label">{{ monthLabel }}</span>
+        <span class="minisite-calendar__label-group">
+          <span class="minisite-calendar__label">{{ monthLabel }}</span>
+          <button
+            v-if="!isCurrentMonth"
+            type="button"
+            class="minisite-calendar__today"
+            @click="goToToday"
+          >
+            {{ t('minisite.calendar.today') }}
+          </button>
+        </span>
         <button
           type="button"
           class="minisite-calendar__nav"
@@ -127,7 +148,7 @@ function nextMonth() {
           v-for="cell in week"
           :key="cell.iso"
           class="minisite-calendar__day"
-          :class="{ 'minisite-calendar__day--outside': !cell.inMonth, 'minisite-calendar__day--blocked': cell.blocked }"
+          :class="{ 'minisite-calendar__day--outside': !cell.inMonth, 'minisite-calendar__day--blocked': cell.blocked, 'minisite-calendar__day--today': cell.isToday }"
         >
           {{ cell.day }}
         </span>
@@ -170,9 +191,21 @@ function nextMonth() {
   @apply flex items-center justify-between;
 }
 
+.minisite-calendar__label-group {
+  @apply flex items-center gap-2;
+}
+
 .minisite-calendar__label {
   @apply text-sm font-semibold capitalize;
   color: var(--color-text);
+}
+
+.minisite-calendar__today {
+  @apply px-2 py-0.5 text-xs font-medium;
+  border-radius: var(--radius-pill, 999px);
+  background-color: var(--color-surface);
+  border: 1px solid var(--color-border, #d1d5db);
+  color: var(--color-primary);
 }
 
 .minisite-calendar__nav {
@@ -194,7 +227,6 @@ function nextMonth() {
 .minisite-calendar__day {
   @apply flex aspect-square items-center justify-center text-sm;
   color: var(--color-text);
-  border-radius: var(--radius-base, 8px);
 }
 
 .minisite-calendar__day--outside {
@@ -206,6 +238,17 @@ function nextMonth() {
   background-color: #fee2e2;
   color: #991b1b;
   font-weight: 600;
+}
+
+/*
+  box-shadow inset invece di border: non sposta il contenuto della cella
+  (un vero border avrebbe ridotto lo spazio interno di 2px) e resta visibile
+  sopra allo sfondo rosso di --blocked se il giorno di oggi è anche
+  bloccato — i due stati non si escludono a vicenda.
+*/
+.minisite-calendar__day--today {
+  font-weight: 700;
+  box-shadow: inset 0 0 0 2px var(--color-primary);
 }
 
 .minisite-calendar__legend {
