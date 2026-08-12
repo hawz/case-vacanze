@@ -146,6 +146,36 @@
     "title": "Your properties",
     "createButton": "New property",
     "loadError": "We couldn't load your properties.",
+    "dashboard": {
+      "kpi": {
+        "published": "Published",
+        "publishedDelta": "of {total} total",
+        "newRequests": "New requests",
+        "newRequestsDeltaPending": "need attention",
+        "newRequestsDeltaNone": "no pending requests",
+        "drafts": "Drafts",
+        "draftsDelta": "wizard incomplete",
+        "nextArrival": "Next arrival",
+        "nextArrivalNone": "None"
+      },
+      "charts": {
+        "requestsTitle": "Availability requests",
+        "requestsSubtitle": "last 6 months",
+        "requestsEmpty": "No requests in the last 6 months.",
+        "statusTitle": "Properties by status",
+        "statusEmpty": "No properties yet."
+      },
+      "feed": {
+        "title": "Recent activity",
+        "empty": "No recent activity.",
+        "newRequest": "New availability request for {name}",
+        "accepted": "Request accepted for {name} — calendar updated",
+        "photosOne": "New photo uploaded for {name}",
+        "photosMany": "{count} new photos uploaded for {name}",
+        "suspended": "{name} suspended by an administrator"
+      },
+      "completenessSteps": "{done}/{total} steps"
+    },
     "empty": {
       "title": "No properties yet",
       "message": "You haven't created any vacation home yet. Create your first one to get started."

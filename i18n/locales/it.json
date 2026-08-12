@@ -146,6 +146,36 @@
     "title": "Le tue proprietà",
     "createButton": "Nuova proprietà",
     "loadError": "Non è stato possibile caricare le proprietà.",
+    "dashboard": {
+      "kpi": {
+        "published": "Pubblicate",
+        "publishedDelta": "su {total} totali",
+        "newRequests": "Richieste nuove",
+        "newRequestsDeltaPending": "da gestire",
+        "newRequestsDeltaNone": "nessuna richiesta in sospeso",
+        "drafts": "In bozza",
+        "draftsDelta": "wizard incompleto",
+        "nextArrival": "Prossimo arrivo",
+        "nextArrivalNone": "Nessuno"
+      },
+      "charts": {
+        "requestsTitle": "Richieste di disponibilità",
+        "requestsSubtitle": "ultimi 6 mesi",
+        "requestsEmpty": "Nessuna richiesta negli ultimi 6 mesi.",
+        "statusTitle": "Proprietà per stato",
+        "statusEmpty": "Nessuna proprietà ancora."
+      },
+      "feed": {
+        "title": "Attività recente",
+        "empty": "Nessuna attività recente.",
+        "newRequest": "Nuova richiesta di disponibilità per {name}",
+        "accepted": "Richiesta accettata per {name} — calendario aggiornato",
+        "photosOne": "Nuova foto caricata su {name}",
+        "photosMany": "{count} nuove foto caricate su {name}",
+        "suspended": "{name} sospesa da un amministratore"
+      },
+      "completenessSteps": "{done}/{total} step"
+    },
     "empty": {
       "title": "Nessuna proprietà",
       "message": "Non hai ancora creato nessuna casa vacanza. Crea la prima per iniziare."
