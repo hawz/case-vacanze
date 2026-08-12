@@ -71,6 +71,8 @@ async function onLogout() {
         &copy; {{ new Date().getFullYear() }} Portale Case Vacanze
       </p>
     </footer>
+
+    <BackToTop />
   </div>
 </template>
 
