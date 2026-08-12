@@ -12,6 +12,15 @@ export default defineNuxtConfig({
       meta: [
         { name: 'viewport', content: 'width=device-width, initial-scale=1' },
       ],
+      // US-2011: favicon SVG diretto, nessuna conversione a .ico necessaria
+      // (i browser moderni supportano rel="icon" con SVG nativamente) — evita
+      // il gotcha già noto di conversione asset in locale (manca rsvg-convert,
+      // vedi US-2003/CLAUDE.md). "sizes: any" segnala che l'SVG copre
+      // qualunque risoluzione, invece di far cercare al browser un
+      // /favicon.ico di default in parallelo.
+      link: [
+        { rel: 'icon', type: 'image/svg+xml', href: '/favicon.svg', sizes: 'any' },
+      ],
     },
   },
 
